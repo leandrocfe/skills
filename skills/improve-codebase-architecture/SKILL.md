@@ -1,6 +1,6 @@
 ---
 name: improve-codebase-architecture
-description: Encontra oportunidades de aprofundamento de módulos no codebase informadas pelo `CONTEXT.md` e ADRs — expõe atrito arquitetural (módulos rasos, acoplamento que vaza, código difícil de testar) e propõe refators que aumentam alavancagem e localidade. Use quando usuário disser "melhorar arquitetura", "refatorar", "aprofundar módulos", ou invocar /improve-codebase-architecture. Triggers: "improve architecture", "refactor candidates", "ball of mud", "deep modules", "deepen".
+description: "Encontra oportunidades de aprofundamento de módulos no codebase informadas pelo `CONTEXT.md` e ADRs — expõe atrito arquitetural (módulos rasos, acoplamento que vaza, código difícil de testar) e propõe refators que aumentam alavancagem e localidade. Use quando usuário disser \"melhorar arquitetura\", \"refatorar\", \"aprofundar módulos\", ou invocar /improve-codebase-architecture. Triggers: \"improve architecture\", \"refactor candidates\", \"ball of mud\", \"deep modules\", \"deepen\"."
 ---
 
 # improve-codebase-architecture

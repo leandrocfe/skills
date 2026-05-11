@@ -1,6 +1,6 @@
 ---
 name: grill-with-docs
-description: Sessão de grill que confronta o plano contra o domínio documentado (CONTEXT.md, ADRs) e atualiza a documentação inline conforme decisões cristalizam. Use quando usuário disser "questione com docs", "validar contra domínio", "estressar plano com ADRs", "atualizar CONTEXT.md", ou invocar /grill-with-docs. Triggers: "grill with docs", "validate against docs", "domain model".
+description: "Sessão de grill que confronta o plano contra o domínio documentado (CONTEXT.md, ADRs) e atualiza a documentação inline conforme decisões cristalizam. Use quando usuário disser \"questione com docs\", \"validar contra domínio\", \"estressar plano com ADRs\", \"atualizar CONTEXT.md\", ou invocar /grill-with-docs. Triggers: \"grill with docs\", \"validate against docs\", \"domain model\"."
 ---
 
 # grill-with-docs

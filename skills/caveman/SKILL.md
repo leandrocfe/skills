@@ -1,6 +1,6 @@
 ---
 name: caveman
-description: Modo de comunicação ultra-comprimido. Reduz uso de tokens em ~75% removendo enchimento, artigos e cordialidades sem perder precisão técnica. Use quando o usuário disser "modo caverna", "modo caveman", "fala tipo caverna", "menos tokens", "seja breve", "responde curto", ou invocar /caveman. Triggers: "caveman", "modo caverna", "menos tokens".
+description: "Modo de comunicação ultra-comprimido. Reduz uso de tokens em ~75% removendo enchimento, artigos e cordialidades sem perder precisão técnica. Use quando o usuário disser \"modo caverna\", \"modo caveman\", \"fala tipo caverna\", \"menos tokens\", \"seja breve\", \"responde curto\", ou invocar /caveman. Triggers: \"caveman\", \"modo caverna\", \"menos tokens\"."
 ---
 
 # caveman

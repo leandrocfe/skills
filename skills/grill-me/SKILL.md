@@ -1,6 +1,6 @@
 ---
 name: grill-me
-description: Entrevista relentless sobre plano, design ou ideia até toda decisão estar explícita e cada galho de árvore de decisão estar resolvido. Use quando usuário disser "me entreviste", "me questione", "estresse esse plano", "valide essa ideia", "antes de codar quero pensar", ou invocar /grill-me. Triggers: "grill me", "stress test", "challenge my plan".
+description: "Entrevista relentless sobre plano, design ou ideia até toda decisão estar explícita e cada galho de árvore de decisão estar resolvido. Use quando usuário disser \"me entreviste\", \"me questione\", \"estresse esse plano\", \"valide essa ideia\", \"antes de codar quero pensar\", ou invocar /grill-me. Triggers: \"grill me\", \"stress test\", \"challenge my plan\"."
 ---
 
 # grill-me

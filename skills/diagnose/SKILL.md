@@ -1,6 +1,6 @@
 ---
 name: diagnose
-description: Diagnostica bug difícil ou regressão de performance através de um loop de feedback determinístico — construir o loop é a habilidade central; bisseção, teste de hipótese e instrumentação são consumo dele. Use quando usuário pedir "diagnosticar bug", "investigar bug difícil", "achar regressão", "por que está quebrando", "bug intermitente", ou invocar /diagnose. Triggers: "diagnose", "debug", "regression", "root cause", "feedback loop".
+description: "Diagnostica bug difícil ou regressão de performance através de um loop de feedback determinístico — construir o loop é a habilidade central; bisseção, teste de hipótese e instrumentação são consumo dele. Use quando usuário pedir \"diagnosticar bug\", \"investigar bug difícil\", \"achar regressão\", \"por que está quebrando\", \"bug intermitente\", ou invocar /diagnose. Triggers: \"diagnose\", \"debug\", \"regression\", \"root cause\", \"feedback loop\"."
 ---
 
 # diagnose

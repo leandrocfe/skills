@@ -1,6 +1,6 @@
 ---
 name: handoff
-description: Comprime a conversa atual em documento de handoff acionável (onde paramos, o que foi tentado, o que falhou, próximo passo, arquivos críticos, decisões em aberto) para continuação em outra sessão ou por outro agente. Use quando usuário disser "passar bastão", "fazer handoff", "compactar contexto", "passar pra outra sessão", "contexto saturando", ou invocar /handoff. Triggers: "handoff", "context handoff", "pass the baton".
+description: "Comprime a conversa atual em documento de handoff acionável (onde paramos, o que foi tentado, o que falhou, próximo passo, arquivos críticos, decisões em aberto) para continuação em outra sessão ou por outro agente. Use quando usuário disser \"passar bastão\", \"fazer handoff\", \"compactar contexto\", \"passar pra outra sessão\", \"contexto saturando\", ou invocar /handoff. Triggers: \"handoff\", \"context handoff\", \"pass the baton\"."
 ---
 
 # handoff

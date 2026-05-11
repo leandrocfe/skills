@@ -1,6 +1,6 @@
 ---
 name: to-prd
-description: Compacta a conversa atual em PRD bem-formado (problema, requisitos, critérios de aceitação, fora de escopo) e submete ao Rastreador de Issues. Use quando usuário pedir "gerar PRD", "criar documento de produto", "transformar isso em PRD", "documentar essa feature", ou invocar /to-prd. Triggers: "to PRD", "product requirements", "spec".
+description: "Compacta a conversa atual em PRD bem-formado (problema, requisitos, critérios de aceitação, fora de escopo) e submete ao Rastreador de Issues. Use quando usuário pedir \"gerar PRD\", \"criar documento de produto\", \"transformar isso em PRD\", \"documentar essa feature\", ou invocar /to-prd. Triggers: \"to PRD\", \"product requirements\", \"spec\"."
 ---
 
 # to-prd

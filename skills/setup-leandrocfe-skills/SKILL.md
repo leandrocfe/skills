@@ -1,6 +1,6 @@
 ---
 name: setup-leandrocfe-skills
-description: Configura este repositório para usar as skills do plugin leandrocfe-skills — define qual Rastreador de Issues usar (GitHub, GitLab, markdown local), o vocabulário de labels de triagem e a localização dos docs de domínio (CONTEXT.md, ADRs). Rode antes do primeiro uso de `to-issues`, `to-prd`, `triage`, `diagnose`, `tdd`, ou se essas skills parecem confusas sobre tracker/labels/docs. Use quando usuário disser "configurar skills", "setup do plugin", "preparar repositório", "scaffolding inicial", ou invocar /setup-leandrocfe-skills. Triggers: "setup skills", "scaffold", "configure plugin".
+description: "Configura este repositório para usar as skills do plugin leandrocfe-skills — define qual Rastreador de Issues usar (GitHub, GitLab, markdown local), o vocabulário de labels de triagem e a localização dos docs de domínio (CONTEXT.md, ADRs). Rode antes do primeiro uso de `to-issues`, `to-prd`, `triage`, `diagnose`, `tdd`, ou se essas skills parecem confusas sobre tracker/labels/docs. Use quando usuário disser \"configurar skills\", \"setup do plugin\", \"preparar repositório\", \"scaffolding inicial\", ou invocar /setup-leandrocfe-skills. Triggers: \"setup skills\", \"scaffold\", \"configure plugin\"."
 disable-model-invocation: true
 ---
 

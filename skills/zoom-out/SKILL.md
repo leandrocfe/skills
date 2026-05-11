@@ -1,6 +1,6 @@
 ---
 name: zoom-out
-description: Sai do detalhe e apresenta a área de código em um nível de abstração acima — mapa de módulos relevantes, callers, fronteiras de contexto e papel da peça no sistema, usando o vocabulário do CONTEXT.md. Use quando usuário disser "zoom out", "me dá contexto", "como isso encaixa", "mostra o sistema todo", "tô perdido aqui", ou invocar /zoom-out. Triggers: "zoom out", "big picture", "system context", "where does this fit".
+description: "Sai do detalhe e apresenta a área de código em um nível de abstração acima — mapa de módulos relevantes, callers, fronteiras de contexto e papel da peça no sistema, usando o vocabulário do CONTEXT.md. Use quando usuário disser \"zoom out\", \"me dá contexto\", \"como isso encaixa\", \"mostra o sistema todo\", \"tô perdido aqui\", ou invocar /zoom-out. Triggers: \"zoom out\", \"big picture\", \"system context\", \"where does this fit\"."
 disable-model-invocation: true
 ---
 

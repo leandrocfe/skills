@@ -1,6 +1,6 @@
 ---
 name: write-a-skill
-description: Cria uma nova skill seguindo o formato canônico deste plugin (frontmatter, estrutura de corpo, gatilhos bilíngues, anti-padrões). Use quando usuário pedir "criar skill", "escrever skill", "nova skill", "adicionar skill ao plugin", ou invocar /write-a-skill. Triggers: "write a skill", "new skill", "create skill".
+description: "Cria uma nova skill seguindo o formato canônico deste plugin (frontmatter, estrutura de corpo, gatilhos bilíngues, anti-padrões). Use quando usuário pedir \"criar skill\", \"escrever skill\", \"nova skill\", \"adicionar skill ao plugin\", ou invocar /write-a-skill. Triggers: \"write a skill\", \"new skill\", \"create skill\"."
 ---
 
 # write-a-skill

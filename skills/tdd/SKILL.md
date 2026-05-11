@@ -1,6 +1,6 @@
 ---
 name: tdd
-description: Implementa feature ou corrige bug usando ciclo red-green-refactor com Fatias Verticais, testes de integração reais (não mock-everything) e commits pequenos por ciclo. Use quando usuário pedir "usar TDD", "test-driven development", "fazer com testes primeiro", "red-green-refactor", ou invocar /tdd. Triggers: "TDD", "test first", "red green refactor", "integration test".
+description: "Implementa feature ou corrige bug usando ciclo red-green-refactor com Fatias Verticais, testes de integração reais (não mock-everything) e commits pequenos por ciclo. Use quando usuário pedir \"usar TDD\", \"test-driven development\", \"fazer com testes primeiro\", \"red-green-refactor\", ou invocar /tdd. Triggers: \"TDD\", \"test first\", \"red green refactor\", \"integration test\"."
 ---
 
 # tdd

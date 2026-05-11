@@ -1,6 +1,6 @@
 ---
 name: to-issues
-description: Quebra plano, PRD ou spec em issues independentes, acionáveis e bem-dimensionadas, e submete ao Rastreador de Issues. Use quando usuário pedir "criar issues", "quebrar em tickets", "gerar issues do GitHub", "transformar PRD em backlog", ou invocar /to-issues. Triggers: "to issues", "break down", "tickets".
+description: "Quebra plano, PRD ou spec em issues independentes, acionáveis e bem-dimensionadas, e submete ao Rastreador de Issues. Use quando usuário pedir \"criar issues\", \"quebrar em tickets\", \"gerar issues do GitHub\", \"transformar PRD em backlog\", ou invocar /to-issues. Triggers: \"to issues\", \"break down\", \"tickets\"."
 ---
 
 # to-issues

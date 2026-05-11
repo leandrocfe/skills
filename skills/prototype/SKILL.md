@@ -1,6 +1,6 @@
 ---
 name: prototype
-description: Constrói protótipo descartável para validar um design antes de comprometer com ele — roteia entre dois ramos: app de terminal interativo para perguntas de lógica/estado, ou várias variações radicalmente diferentes de UI em uma única rota. Use quando usuário disser "prototipar isso", "deixa eu brincar com", "testa o data model", "mostra opções de UI", "tentar 3 layouts", ou invocar /prototype. Triggers: "prototype", "throwaway", "spike", "design options", "let me play".
+description: "Constrói protótipo descartável para validar um design antes de comprometer com ele — roteia entre dois ramos: app de terminal interativo para perguntas de lógica/estado, ou várias variações radicalmente diferentes de UI em uma única rota. Use quando usuário disser \"prototipar isso\", \"deixa eu brincar com\", \"testa o data model\", \"mostra opções de UI\", \"tentar 3 layouts\", ou invocar /prototype. Triggers: \"prototype\", \"throwaway\", \"spike\", \"design options\", \"let me play\"."
 ---
 
 # prototype

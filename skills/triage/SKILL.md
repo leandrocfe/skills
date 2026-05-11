@@ -1,6 +1,6 @@
 ---
 name: triage
-description: Move issues do Rastreador por uma máquina de estados de papéis de triagem — `precisa-de-triagem`, `precisa-de-info`, `pronta-pra-agente`, `pronta-pra-humano`, `wontfix` — separando bugs de features e gerando agent briefs durável quando a issue está pronta para um agente AFK pegar. Use quando usuário pedir "triar issues", "fazer triagem", "classificar bug", "preparar issue pra agente", "achar issues prontas", ou invocar /triage. Triggers: "triage", "classify", "ready for agent", "AFK", "agent brief".
+description: "Move issues do Rastreador por uma máquina de estados de papéis de triagem — `precisa-de-triagem`, `precisa-de-info`, `pronta-pra-agente`, `pronta-pra-humano`, `wontfix` — separando bugs de features e gerando agent briefs durável quando a issue está pronta para um agente AFK pegar. Use quando usuário pedir \"triar issues\", \"fazer triagem\", \"classificar bug\", \"preparar issue pra agente\", \"achar issues prontas\", ou invocar /triage. Triggers: \"triage\", \"classify\", \"ready for agent\", \"AFK\", \"agent brief\"."
 ---
 
 # triage
