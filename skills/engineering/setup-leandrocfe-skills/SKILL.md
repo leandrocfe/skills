@@ -1,6 +1,6 @@
 ---
 name: setup-leandrocfe-skills
-description: Configura um bloco `## Agent skills` em AGENTS.md/CLAUDE.md e `docs/agents/` para que as engineering skills conheçam o issue tracker deste repo (GitHub ou markdown local), o vocabulário de triage labels e o layout dos docs de domínio. Rode antes do primeiro uso de `to-issues`, `to-prd`, `triage`, `diagnose`, `tdd`, `improve-codebase-architecture` ou `zoom-out` — ou se essas skills parecerem sem contexto sobre issue tracker, triage labels ou docs de domínio.
+description: "Configura um bloco `## Agent skills` em AGENTS.md/CLAUDE.md e `docs/agents/` para que as engineering skills conheçam o issue tracker deste repo (GitHub ou markdown local), o vocabulário de triage labels e o layout dos docs de domínio. Rode antes do primeiro uso de `to-issues`, `to-prd`, `triage`, `diagnose`, `tdd`, `improve-codebase-architecture` ou `zoom-out` — ou se essas skills parecerem sem contexto sobre issue tracker, triage labels ou docs de domínio."
 disable-model-invocation: true
 ---
 

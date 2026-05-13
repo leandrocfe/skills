@@ -1,6 +1,6 @@
 ---
 name: to-issues
-description: Quebra um plano, spec ou PRD em issues independentes no issue tracker do projeto usando vertical slices estilo tracer bullet. Use quando o usuário quiser converter um plano em issues, criar tickets de implementação ou quebrar trabalho em issues. Use when user wants to convert a plan into issues, create implementation tickets, or break down work into issues.
+description: "Quebra um plano, spec ou PRD em issues independentes no issue tracker do projeto usando vertical slices estilo tracer bullet. Use quando o usuário quiser converter um plano em issues, criar tickets de implementação ou quebrar trabalho em issues. Use when user wants to convert a plan into issues, create implementation tickets, or break down work into issues."
 ---
 
 # To Issues

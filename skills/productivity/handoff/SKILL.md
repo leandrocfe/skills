@@ -1,6 +1,6 @@
 ---
 name: handoff
-description: Compacta a conversa atual em um documento de handoff para outro agente continuar o trabalho. Use when user wants to hand off work to a fresh agent, save context for later, or mentions handoff.
+description: "Compacta a conversa atual em um documento de handoff para outro agente continuar o trabalho. Use when user wants to hand off work to a fresh agent, save context for later, or mentions handoff."
 argument-hint: "Para que a próxima sessão vai ser usada?"
 ---
 

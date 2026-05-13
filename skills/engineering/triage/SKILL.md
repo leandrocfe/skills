@@ -1,6 +1,6 @@
 ---
 name: triage
-description: Triagem de issues através de uma máquina-de-estado dirigida por triage roles. Use quando o usuário quiser criar uma issue, triagear issues, revisar bugs ou feature requests recebidos, preparar issues para um AFK agent, ou gerenciar workflow de issues. Use when user wants to create an issue, triage issues, review incoming bugs or feature requests, prepare issues for an AFK agent, or manage issue workflow.
+description: "Triagem de issues através de uma máquina-de-estado dirigida por triage roles. Use quando o usuário quiser criar uma issue, triagear issues, revisar bugs ou feature requests recebidos, preparar issues para um AFK agent, ou gerenciar workflow de issues. Use when user wants to create an issue, triage issues, review incoming bugs or feature requests, prepare issues for an AFK agent, or manage issue workflow."
 ---
 
 # Triage

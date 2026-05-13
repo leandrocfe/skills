@@ -1,6 +1,6 @@
 ---
 name: to-prd
-description: Transforma o contexto da conversa atual em um PRD e publica no issue tracker do projeto. Use quando o usuário quiser criar um PRD a partir do contexto atual. Use when user wants to create a PRD from the current context.
+description: "Transforma o contexto da conversa atual em um PRD e publica no issue tracker do projeto. Use quando o usuário quiser criar um PRD a partir do contexto atual. Use when user wants to create a PRD from the current context."
 ---
 
 Esta skill pega o contexto da conversa atual e o entendimento da codebase e produz um PRD. NÃO entreviste o usuário — só sintetize o que você já sabe.

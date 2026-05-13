@@ -1,6 +1,6 @@
 ---
 name: prototype
-description: Constrói um protótipo descartável para flush out de design antes de se comprometer. Roteia entre duas vertentes — uma terminal app executável para perguntas de estado/business logic, ou várias variações radicalmente diferentes de UI alternáveis numa rota só. Use quando o usuário quiser prototipar, fazer sanity-check de data model ou state machine, mockar uma UI, explorar opções de design, ou disser "prototipa isso", "deixa eu brincar", "tenta uns designs". Use when user wants to prototype, sanity-check a data model or state machine, mock up a UI, explore design options.
+description: "Constrói um protótipo descartável para flush out de design antes de se comprometer. Roteia entre duas vertentes — uma terminal app executável para perguntas de estado/business logic, ou várias variações radicalmente diferentes de UI alternáveis numa rota só. Use quando o usuário quiser prototipar, fazer sanity-check de data model ou state machine, mockar uma UI, explorar opções de design, ou disser \"prototipa isso\", \"deixa eu brincar\", \"tenta uns designs\". Use when user wants to prototype, sanity-check a data model or state machine, mock up a UI, explore design options."
 ---
 
 # Prototype

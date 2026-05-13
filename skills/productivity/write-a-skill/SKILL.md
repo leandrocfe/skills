@@ -1,6 +1,6 @@
 ---
 name: write-a-skill
-description: Cria novas agent skills com estrutura correta, progressive disclosure e recursos empacotados. Use quando o usuário quiser criar, escrever ou construir uma skill nova. Use when user wants to create, write, or build a new skill.
+description: "Cria novas agent skills com estrutura correta, progressive disclosure e recursos empacotados. Use quando o usuário quiser criar, escrever ou construir uma skill nova. Use when user wants to create, write, or build a new skill."
 ---
 
 # Writing Skills
@@ -39,7 +39,7 @@ skill-name/
 ```md
 ---
 name: skill-name
-description: Descrição breve da capacidade. Use quando [triggers específicos].
+description: "Descrição breve da capacidade. Use quando [triggers específicos]."
 ---
 
 # Skill Name

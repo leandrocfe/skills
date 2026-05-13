@@ -1,6 +1,6 @@
 ---
 name: improve-codebase-architecture
-description: Encontra oportunidades de aprofundamento (deepening) numa codebase, informado pela linguagem de domínio em CONTEXT.md e pelas decisões em docs/adr/. Use quando o usuário quiser melhorar a arquitetura, achar oportunidades de refactoring, consolidar módulos fortemente acoplados, ou tornar a codebase mais testável e navegável por AI. Use when user wants to improve architecture, find refactoring opportunities, consolidate tightly-coupled modules, or make a codebase more testable and AI-navigable.
+description: "Encontra oportunidades de aprofundamento (deepening) numa codebase, informado pela linguagem de domínio em CONTEXT.md e pelas decisões em docs/adr/. Use quando o usuário quiser melhorar a arquitetura, achar oportunidades de refactoring, consolidar módulos fortemente acoplados, ou tornar a codebase mais testável e navegável por AI. Use when user wants to improve architecture, find refactoring opportunities, consolidate tightly-coupled modules, or make a codebase more testable and AI-navigable."
 ---
 
 # Improve Codebase Architecture

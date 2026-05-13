@@ -1,6 +1,6 @@
 ---
 name: grill-with-docs
-description: Sessão de sabatina que confronta seu plano contra o domain model existente, refina terminologia e atualiza documentação (CONTEXT.md, ADRs) inline conforme as decisões cristalizam. Use quando o usuário quiser stress-test de plano contra a linguagem e decisões documentadas do projeto. Use when user wants to stress-test a plan against their project's language and documented decisions.
+description: "Sessão de sabatina que confronta seu plano contra o domain model existente, refina terminologia e atualiza documentação (CONTEXT.md, ADRs) inline conforme as decisões cristalizam. Use quando o usuário quiser stress-test de plano contra a linguagem e decisões documentadas do projeto. Use when user wants to stress-test a plan against their project's language and documented decisions."
 ---
 
 <what-to-do>

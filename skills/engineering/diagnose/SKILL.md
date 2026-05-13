@@ -1,6 +1,6 @@
 ---
 name: diagnose
-description: Loop disciplinado de diagnóstico para bugs difíceis e regressões de performance. Reproduzir → minimizar → hipotetizar → instrumentar → corrigir → testar regressão. Use quando o usuário disser "diagnostica isso" / "debuga isso", reportar um bug, disser que algo está quebrado/lançando erro/falhando, ou descrever uma regressão de performance. Use when user says "diagnose this" / "debug this", reports a bug, says something is broken/throwing/failing, or describes a performance regression.
+description: "Loop disciplinado de diagnóstico para bugs difíceis e regressões de performance. Reproduzir → minimizar → hipotetizar → instrumentar → corrigir → testar regressão. Use quando o usuário disser \"diagnostica isso\" / \"debuga isso\", reportar um bug, disser que algo está quebrado/lançando erro/falhando, ou descrever uma regressão de performance. Use when user says \"diagnose this\" / \"debug this\", reports a bug, says something is broken/throwing/failing, or describes a performance regression."
 ---
 
 # Diagnose
