@@ -1,20 +1,19 @@
 {
   "name": "leandrocfe-skills",
-  "description": "Skills do Claude Code em pt-BR para desenvolvimento real, não vibe coding",
   "skills": [
-    "./skills/setup-leandrocfe-skills",
-    "./skills/tdd",
-    "./skills/diagnose",
-    "./skills/to-prd",
-    "./skills/to-issues",
-    "./skills/grill-me",
-    "./skills/grill-with-docs",
-    "./skills/zoom-out",
-    "./skills/improve-codebase-architecture",
-    "./skills/prototype",
-    "./skills/caveman",
-    "./skills/handoff",
-    "./skills/triage",
-    "./skills/write-a-skill"
+    "./skills/engineering/diagnose",
+    "./skills/engineering/grill-with-docs",
+    "./skills/engineering/triage",
+    "./skills/engineering/improve-codebase-architecture",
+    "./skills/engineering/setup-leandrocfe-skills",
+    "./skills/engineering/tdd",
+    "./skills/engineering/to-issues",
+    "./skills/engineering/to-prd",
+    "./skills/engineering/zoom-out",
+    "./skills/engineering/prototype",
+    "./skills/productivity/caveman",
+    "./skills/productivity/grill-me",
+    "./skills/productivity/handoff",
+    "./skills/productivity/write-a-skill"
   ]
 }

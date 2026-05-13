@@ -1,178 +1,161 @@
-# leandrocfe-skills
+# Skills Para Engenheiros De Verdade
 
-> Skills do Claude Code em pt-BR para desenvolvimento real, não vibe coding.
+Skills de agente que o [Matt Pocock](https://github.com/mattpocock/skills/) usa todo dia para fazer engenharia de verdade — não vibe coding.
 
-Coleção de skills que uso no dia a dia para trabalhar com método, evidência e disciplina. Inspirada no trabalho do [Matt Pocock](https://github.com/mattpocock/skills) e adaptada para o público brasileiro, com termos, exemplos e tom em pt-BR — não tradução literal.
+Desenvolver aplicações reais é difícil. Abordagens como GSD, BMAD e Spec-Kit tentam ajudar tomando conta do processo. Mas ao fazer isso, tiram seu controle e dificultam resolver bugs no próprio processo.
 
-Desenvolver software de verdade é difícil. Abordagens como GSD, BMAD e Spec-Kit tentam ajudar **dominando** o processo. Mas ao fazer isso, tiram seu controle e tornam bugs no processo difíceis de resolver.
+Estas skills são pequenas, fáceis de adaptar e componíveis. Funcionam com qualquer modelo. São baseadas em décadas de experiência de engenharia. Hackeie. Torne suas. Aproveite.
 
-Estas skills são pequenas, fáceis de adaptar e composáveis. Funcionam com qualquer modelo. São baseadas em décadas de experiência de desenvolvimento. Mexa nelas. Faça suas.
+## Quickstart (setup de 30 segundos)
 
-## Instalação rápida
+1. Rode o installer do skills.sh:
 
 ```bash
 npx skills@latest add leandrocfe/skills
 ```
 
-Depois rode `/setup-leandrocfe-skills` no seu agente. Ele vai perguntar:
+2. Escolha as skills que quer, e em quais coding agents instalar. **Garanta que selecionou `/setup-leandrocfe-skills`**.
 
-- Qual Rastreador de Issues você usa (GitHub, GitLab, Markdown local)
-- Que labels você aplica em triagem
-- Onde quer salvar docs de domínio
+3. Rode `/setup-leandrocfe-skills` no seu agente. Ele vai:
+   - Perguntar qual issue tracker você quer usar (GitHub, Linear ou arquivos locais)
+   - Perguntar quais labels você aplica em tickets quando triagem (`/triage` usa labels)
+   - Perguntar onde você quer salvar os docs que criamos
 
-Pronto — você está configurado.
+4. Pronto — você está apto.
 
-## Por que estas skills existem
+## Por Que Estas Skills Existem
 
-Para consertar modos de falha comuns que vejo com Claude Code, Codex e outros agentes de código.
+O [Matt Pocock](https://github.com/mattpocock/skills/) construiu estas skills como forma de corrigir failure modes comuns que ele vê com Claude Code, Codex e outros coding agents.
 
-### Problema 1 — O agente não fez o que eu queria
+### #1: O Agente Não Fez O Que Eu Quero
 
-> "Ninguém sabe exatamente o que quer."
+> "Ninguém sabe exatamente o que quer"
 >
-> David Thomas & Andrew Hunt, [The Pragmatic Programmer](https://www.amazon.com.br/Programador-Pragm%C3%A1tico-Aprendiz-Mestre/dp/8577807738)
+> David Thomas & Andrew Hunt, [The Pragmatic Programmer](https://www.amazon.co.uk/Pragmatic-Programmer-Anniversary-Journey-Mastery/dp/B0833F1T3V)
 
-**O problema.** O modo de falha mais comum em desenvolvimento é **desalinhamento**. Você acha que o dev sabe o que você quer. Aí vê o que ele construiu — e percebe que ele não te entendeu.
+**O Problema**. O failure mode mais comum no desenvolvimento de software é desalinhamento. Você acha que o dev sabe o que você quer. Aí você vê o que ele construiu — e percebe que ele não te entendeu nada.
 
-Mesma coisa na era da IA. Existe um gap de comunicação entre você e o agente. A cura é uma **sessão de grill** — fazer o agente te questionar até toda decisão estar explícita.
+É o mesmo na era da IA. Existe um gap de comunicação entre você e o agente. A correção para isso é uma **sessão de sabatina** — fazer o agente te perguntar coisas detalhadas sobre o que você está construindo.
 
-**A correção:**
+**A Correção** é usar:
 
-- [`/grill-me`](./skills/grill-me/SKILL.md) — para usos não-código
-- [`/grill-with-docs`](./skills/grill-with-docs/SKILL.md) — igual ao `grill-me`, mas valida contra o domínio documentado e atualiza `CONTEXT.md` / ADRs **durante** a conversa
+- [`/grill-me`](./skills/productivity/grill-me/SKILL.md) — para usos não-código
+- [`/grill-with-docs`](./skills/engineering/grill-with-docs/SKILL.md) — igual ao [`/grill-me`](./skills/productivity/grill-me/SKILL.md), mas com extras (veja abaixo)
 
-Use sempre que for fazer uma mudança não-trivial. **Estas são as skills que mais uso.**
+São algumas das skills mais populares do [Matt Pocock](https://github.com/mattpocock/skills/). Te ajudam a alinhar com o agente antes de começar, e a pensar fundo sobre a mudança que você está fazendo. Use-as _toda_ vez que quiser fazer uma mudança.
 
-### Problema 2 — O agente é prolixo demais
+### #2: O Agente É Verboso Demais
 
-> "Com uma linguagem ubíqua, conversas entre devs e expressões no código são derivadas do mesmo modelo de domínio."
+> Com uma ubiquitous language, as conversas entre devs e as expressões no código derivam do mesmo domain model.
 >
-> Eric Evans, [Domain-Driven Design](https://www.amazon.com.br/Domain-Driven-Design-Eric-Evans/dp/8550800651)
+> Eric Evans, [Domain-Driven-Design](https://www.amazon.co.uk/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215)
 
-**O problema.** No início de um projeto, devs e o pessoal de domínio falam línguas diferentes.
+**O Problema**: No começo de um projeto, devs e as pessoas para quem estão construindo o software (os domain experts) geralmente falam línguas diferentes.
 
-Eu sentia a mesma tensão com meus agentes. Eles entram no projeto e tentam descobrir o jargão sozinhos. Então usam 20 palavras onde 1 bastaria.
+[Matt Pocock](https://github.com/mattpocock/skills/) sentiu a mesma tensão com seus agentes. Agentes geralmente são jogados num projeto e devem se virar com o jargão. Aí usam 20 palavras quando 1 bastava.
 
-**A correção** é linguagem compartilhada. Um documento que ajuda agentes a decodificar o jargão do projeto.
+**A Correção** é uma linguagem compartilhada. É um documento que ajuda agentes a decodificar o jargão usado no projeto.
 
 <details>
-<summary>Exemplo</summary>
+<summary>
+Exemplo
+</summary>
 
-- **ANTES:** "Tem um problema quando uma lição dentro de uma seção de um curso é tornada 'real' (i.e. recebe um lugar no sistema de arquivos)"
-- **DEPOIS:** "Tem um problema com a cascata de materialização"
+Aqui um exemplo de [`CONTEXT.md`](https://github.com/mattpocock/course-video-manager/blob/076a5a7a182db0fe1e62971dd7a68bcadf010f1c/CONTEXT.md), do repo `course-video-manager` do Matt. Qual é mais fácil de ler?
 
-Essa concisão paga em toda sessão.
+- **ANTES**: "Tem um problema quando uma lesson dentro de uma section de um course é tornada 'real' (i.e. ganha um lugar no file system)"
+- **DEPOIS**: "Tem um problema com o materialization cascade"
+
+Essa concisão paga dividendo sessão após sessão.
 
 </details>
 
-Isso está embutido em [`/grill-with-docs`](./skills/grill-with-docs/SKILL.md). É grill que constrói linguagem compartilhada e registra decisões difíceis em ADRs.
+Isso está embutido em [`/grill-with-docs`](./skills/engineering/grill-with-docs/SKILL.md). É uma sessão de sabatina, mas que te ajuda a construir uma linguagem compartilhada com a IA e a documentar decisões difíceis de explicar em ADRs.
+
+É difícil explicar o quanto isso é poderoso. Pode ser a única técnica mais legal deste repo. Experimente e veja.
 
 > [!TIP]
-> Linguagem compartilhada tem outros benefícios além de reduzir prolixidade:
+> Uma linguagem compartilhada tem muitos outros benefícios além de reduzir verbosidade:
 >
-> - **Variáveis, funções e arquivos são nomeados consistentemente** usando a linguagem compartilhada
-> - Como resultado, o **codebase fica mais fácil de navegar** pelo agente
-> - O agente também **gasta menos tokens pensando**, porque tem acesso a linguagem mais concisa
+> - **Variáveis, funções e arquivos são nomeados de forma consistente**, usando a linguagem compartilhada
+> - Como consequência, a **codebase fica mais fácil de navegar** pelo agente
+> - O agente também **gasta menos tokens pensando**, porque tem acesso a uma linguagem mais concisa
 
-### Problema 3 — O código não funciona
+### #3: O Código Não Funciona
 
-> "Sempre dê passos pequenos e deliberados. Taxa de feedback é seu limite de velocidade. Nunca pegue uma tarefa grande demais."
+> "Sempre dê passos pequenos e deliberados. A taxa de feedback é o seu speed limit. Nunca pegue uma task grande demais."
 >
-> David Thomas & Andrew Hunt, [The Pragmatic Programmer](https://www.amazon.com.br/Programador-Pragm%C3%A1tico-Aprendiz-Mestre/dp/8577807738)
+> David Thomas & Andrew Hunt, [The Pragmatic Programmer](https://www.amazon.co.uk/Pragmatic-Programmer-Anniversary-Journey-Mastery/dp/B0833F1T3V)
 
-**O problema.** Digamos que você e o agente estão alinhados. O que acontece quando ele **ainda** produz lixo?
+**O Problema**: Digamos que você e o agente estão alinhados sobre o que construir. O que acontece quando o agente _ainda assim_ produz porcaria?
 
-Hora de olhar seus loops de feedback. Sem feedback de como o código que produz realmente roda, o agente está voando às cegas.
+É hora de olhar seus feedback loops. Sem feedback de como o código que ele produz roda de verdade, o agente vai voar cego.
 
-**A correção:** loops de feedback — tipos estáticos, acesso a browser, testes automatizados.
+**A Correção**: Você precisa do trio usual de feedback loops: tipos estáticos, acesso ao browser e testes automatizados.
 
-Pra testes, **red-green-refactor** é crítico. Agente escreve teste que falha primeiro, depois corrige. Isso dá ao agente nível consistente de feedback que resulta em código muito melhor.
+Para testes automatizados, um loop red-green-refactor é crítico. Aí o agente escreve um teste que falha primeiro, depois conserta o teste. Isso dá ao agente um nível consistente de feedback que resulta em código bem melhor.
 
-- [`/tdd`](./skills/tdd/SKILL.md) — TDD disciplinado em fatias verticais, com arquivos de apoio sobre [testes bons vs ruins](./skills/tdd/tests.md), [mocking](./skills/tdd/mocking.md), [módulos profundos](./skills/tdd/deep-modules.md), [interface design](./skills/tdd/interface-design.md), [candidatos a refator](./skills/tdd/refactoring.md)
-- [`/diagnose`](./skills/diagnose/SKILL.md) — loop de feedback é o **núcleo** da skill; bisseção, hipótese e instrumentação consomem o loop
+O [Matt Pocock](https://github.com/mattpocock/skills/) criou uma **skill [`/tdd`](./skills/engineering/tdd/SKILL.md)** que você pluga em qualquer projeto. Ela incentiva red-green-refactor e dá ao agente bastante orientação sobre o que é teste bom e ruim.
 
-### Problema 4 — Construímos uma bola de lama
+Para debug, [Matt Pocock](https://github.com/mattpocock/skills/) também criou uma skill **[`/diagnose`](./skills/engineering/diagnose/SKILL.md)** que embrulha as melhores práticas de debugging num loop simples.
+
+### #4: Construímos Uma Ball Of Mud
 
 > "Invista no design do sistema _todo dia_."
 >
-> Kent Beck, [Extreme Programming Explained](https://www.amazon.com.br/Extreme-Programming-Explained-Embrace-Change/dp/0201616416)
+> Kent Beck, [Extreme Programming Explained](https://www.amazon.co.uk/Extreme-Programming-Explained-Embrace-Change/dp/0321278658)
 
-> "Os melhores módulos são profundos. Permitem muita funcionalidade através de interface simples."
+> "Os melhores módulos são deep. Permitem que muita funcionalidade seja acessada através de uma interface simples."
 >
-> John Ousterhout, [A Philosophy of Software Design](https://www.amazon.com.br/Philosophy-Software-Design-2nd/dp/173210221X)
+> John Ousterhout, [A Philosophy Of Software Design](https://www.amazon.co.uk/Philosophy-Software-Design-2nd/dp/173210221X)
 
-**O problema.** A maioria dos apps construídos com agentes é complexa e difícil de mudar. Como agentes aceleram codificação, eles aceleram **entropia de software**. Codebases ficam complexos numa velocidade nova.
+**O Problema**: A maioria dos apps construídos com agentes é complexa e difícil de mudar. Como agentes podem acelerar radicalmente coding, eles também aceleram entropia de software. Codebases ficam mais complexas a uma taxa sem precedentes.
 
-**A correção** é uma abordagem radicalmente nova ao desenvolvimento com IA: **se importar com design de código**.
+**A Correção** é uma abordagem radicalmente nova ao desenvolvimento powered-by-AI: importar com o design do código.
 
-Isso está embutido em toda camada destas skills:
+Isso está embutido em cada camada destas skills:
 
-- [`/to-prd`](./skills/to-prd/SKILL.md) te questiona sobre quais módulos você está tocando antes de criar um PRD
-- [`/zoom-out`](./skills/zoom-out/SKILL.md) instrui o agente a explicar código no contexto do sistema inteiro
-- [`/prototype`](./skills/prototype/SKILL.md) constrói protótipo descartável pra forçar decisões antes de comprometer
+- [`/to-prd`](./skills/engineering/to-prd/SKILL.md) te sabatina sobre quais módulos você está tocando antes de criar um PRD
+- [`/zoom-out`](./skills/engineering/zoom-out/SKILL.md) diz ao agente para explicar código no contexto do sistema inteiro
 
-E crucialmente:
-
-- [`/improve-codebase-architecture`](./skills/improve-codebase-architecture/SKILL.md) resgata codebase que virou bola de lama. Recomendação: rodar a cada poucos dias.
+E crucial, [`/improve-codebase-architecture`](./skills/engineering/improve-codebase-architecture/SKILL.md) te ajuda a resgatar uma codebase que virou ball of mud. Recomendo rodar na sua codebase a cada poucos dias.
 
 ### Resumo
 
-Fundamentos de desenvolvimento de software importam mais do que nunca. Estas skills são minha melhor tentativa de condensar esses fundamentos em práticas repetíveis, pra te ajudar a entregar os melhores apps da sua carreira.
+Fundamentos de engenharia de software importam mais que nunca. Estas skills são o melhor esforço do [Matt Pocock](https://github.com/mattpocock/skills/) para condensar esses fundamentos em práticas repetíveis, para te ajudar a entregar os melhores apps da sua carreira. Aproveite.
 
-## Skills
+## Referência
 
-### Setup (rodar 1× por repo)
+### Engineering
 
-| Skill | O que faz |
-|-------|-----------|
-| [setup-leandrocfe-skills](./skills/setup-leandrocfe-skills/SKILL.md) | Scaffolding inicial — define tracker, labels de triagem, docs de domínio |
+Skills que o [Matt Pocock](https://github.com/mattpocock/skills/) usa todo dia para trabalho com código.
 
-| Skill | O que faz |
-|-------|-----------|
-| [grill-me](./skills/grill-me/SKILL.md) | Entrevista relentless sobre seu plano até cada decisão estar clara |
-| [grill-with-docs](./skills/grill-with-docs/SKILL.md) | Confronta seu plano contra o domínio documentado, atualiza CONTEXT.md/ADRs inline |
-| [to-prd](./skills/to-prd/SKILL.md) | Compacta conversa em PRD bem-formado e submete ao tracker |
-| [to-issues](./skills/to-issues/SKILL.md) | Quebra plano/PRD em issues independentes e acionáveis |
-| [triage](./skills/triage/SKILL.md) | Triagem por máquina de estados (categoria + estado, AFK-ready) |
-| [tdd](./skills/tdd/SKILL.md) | Red-green-refactor disciplinado, fatias verticais, sem mock-everything |
-| [diagnose](./skills/diagnose/SKILL.md) | Loop de feedback determinístico no centro; bisseção/hipótese/instrumentação consomem |
-| [zoom-out](./skills/zoom-out/SKILL.md) | Mapa do sistema acima do detalhe atual |
-| [improve-codebase-architecture](./skills/improve-codebase-architecture/SKILL.md) | Resgata bola de lama — encontra oportunidades de aprofundamento |
-| [prototype](./skills/prototype/SKILL.md) | Protótipo descartável (terminal pra lógica, UI variants em rota) |
+- **[diagnose](./skills/engineering/diagnose/SKILL.md)** — Loop disciplinado de diagnóstico para bugs difíceis e regressões de performance: reproduzir → minimizar → hipotetizar → instrumentar → corrigir → testar regressão.
+- **[grill-with-docs](./skills/engineering/grill-with-docs/SKILL.md)** — Sessão de sabatina que confronta seu plano contra o domain model existente, refina terminologia e atualiza `CONTEXT.md` e ADRs inline.
+- **[triage](./skills/engineering/triage/SKILL.md)** — Triagem de issues através de uma máquina-de-estado de triage roles.
+- **[improve-codebase-architecture](./skills/engineering/improve-codebase-architecture/SKILL.md)** — Encontra oportunidades de aprofundamento na codebase, informado pela linguagem de domínio em `CONTEXT.md` e pelas decisões em `docs/adr/`.
+- **[setup-leandrocfe-skills](./skills/engineering/setup-leandrocfe-skills/SKILL.md)** — Faz o scaffold da config por-repo (issue tracker, vocabulário de triage labels, layout de docs de domínio) que as outras engineering skills consomem. Rode uma vez por repo antes de usar `to-issues`, `to-prd`, `triage`, `diagnose`, `tdd`, `improve-codebase-architecture` ou `zoom-out`.
+- **[tdd](./skills/engineering/tdd/SKILL.md)** — Test-driven development com loop red-green-refactor. Constrói features ou corrige bugs uma vertical slice por vez.
+- **[to-issues](./skills/engineering/to-issues/SKILL.md)** — Quebra qualquer plano, spec ou PRD em GitHub issues independentes via vertical slices.
+- **[to-prd](./skills/engineering/to-prd/SKILL.md)** — Transforma o contexto da conversa atual em PRD e submete como GitHub issue. Sem entrevista — só sintetiza o que você já discutiu.
+- **[zoom-out](./skills/engineering/zoom-out/SKILL.md)** — Pede ao agente para dar zoom out e oferecer contexto mais amplo ou perspectiva de mais alto nível sobre uma seção de código desconhecida.
+- **[prototype](./skills/engineering/prototype/SKILL.md)** — Constrói um protótipo descartável para flush out de design — seja uma terminal app executável para perguntas de estado/business logic, seja várias variações radicalmente diferentes de UI alternáveis numa rota só.
 
-### Produtividade
+### Productivity
 
-| Skill | O que faz |
-|-------|-----------|
-| [caveman](./skills/caveman/SKILL.md) | Modo compressão: ~75% menos tokens, sem perder precisão técnica |
-| [handoff](./skills/handoff/SKILL.md) | Comprime conversa atual em documento de handoff acionável |
-| [write-a-skill](./skills/write-a-skill/SKILL.md) | Meta-skill: cria nova skill seguindo o formato deste plugin |
+Ferramentas gerais de workflow, não específicas de código.
 
-## Filosofia
-
-- **Fatias verticais > horizontais** — caminhos funcionais ponta-a-ponta antes de inchar camadas
-- **Disciplina > velocidade aparente** — TDD, diagnóstico estruturado, decisões registradas
-- **Linguagem ubíqua** — termos canônicos em [CONTEXT.md](./CONTEXT.md) usados por todas as skills
-- **Anti-vibe-coding** — toda skill aqui existe pra forçar entendimento antes de código
-- **Cético com mocks** — testes de integração quando dá, mocks só onde realmente isola
-- **Design diário** — `/improve-codebase-architecture` recorrente combate entropia
-
-## Como contribuir
-
-Skills são opinionadas e refletem como **eu** trabalho. Forks são bem-vindos pra adaptar ao seu fluxo. PRs corrigindo bugs/typos: bem-vindos. PRs adicionando skills novas: abra uma issue primeiro pra discussão.
+- **[caveman](./skills/productivity/caveman/SKILL.md)** — Modo de comunicação ultra-comprimido. Corta ~75% do uso de tokens dropando filler enquanto mantém precisão técnica completa.
+- **[grill-me](./skills/productivity/grill-me/SKILL.md)** — Seja sabatinado sem dó sobre um plano ou design até cada ramo da árvore de decisão estar resolvido.
+- **[handoff](./skills/productivity/handoff/SKILL.md)** — Compacta a conversa atual em documento de handoff para outro agente continuar o trabalho.
+- **[write-a-skill](./skills/productivity/write-a-skill/SKILL.md)** — Cria novas skills com estrutura correta, progressive disclosure e recursos empacotados.
 
 ## Créditos
 
-Conceitos, estrutura de pasta e padrão de SKILL.md inspirados no trabalho do [Matt Pocock](https://github.com/mattpocock/skills) sob licença MIT. Cada skill aqui foi **reescrita em pt-BR**, com adaptações próprias pra o público brasileiro (não é tradução literal).
+Este projeto é uma localização não-oficial em português do Brasil das skills criadas por **[Matt Pocock](https://github.com/mattpocock/skills/)**. Estrutura, fluxo, filosofia e comportamento das skills foram preservados — só linguagem e exemplos foram adaptados ao contexto brasileiro.
 
-Livros que moldaram este plugin:
+Repositório original: https://github.com/mattpocock/skills
 
-- David Thomas & Andrew Hunt — [The Pragmatic Programmer](https://www.amazon.com.br/Programador-Pragm%C3%A1tico-Aprendiz-Mestre/dp/8577807738)
-- Eric Evans — [Domain-Driven Design](https://www.amazon.com.br/Domain-Driven-Design-Eric-Evans/dp/8550800651)
-- Kent Beck — [Extreme Programming Explained](https://www.amazon.com.br/Extreme-Programming-Explained-Embrace-Change/dp/0201616416)
-- John Ousterhout — [A Philosophy of Software Design](https://www.amazon.com.br/Philosophy-Software-Design-2nd/dp/173210221X)
-- Michael Feathers — Working Effectively with Legacy Code (conceito de **seam**)
+Newsletter do Matt: https://www.aihero.dev/s/skills-newsletter
 
-## Licença
-
-[MIT](./LICENSE) © 2026 Leandro Ferreira
+Todo o crédito de design, intenção e conteúdo original vai para o [Matt Pocock](https://github.com/mattpocock/skills/).
