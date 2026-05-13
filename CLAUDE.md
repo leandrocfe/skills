@@ -3,7 +3,7 @@ Skills organizadas em buckets dentro de `skills/`:
 - `engineering/` — trabalho diário com código
 - `productivity/` — ferramentas diárias de workflow não-código
 - `misc/` — mantidas mas raramente usadas
-- `personal/` — atreladas ao meu setup, não divulgadas
+- `personal/` — atreladas ao setup do Matt Pocock, não divulgadas
 - `in-progress/` — rascunhos ainda não prontos
 - `deprecated/` — não usadas mais
 
