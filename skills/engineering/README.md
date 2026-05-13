@@ -1,6 +1,6 @@
 # Engineering
 
-Skills que o Matt Pocock usa todo dia para trabalho com código.
+Skills que o [Matt Pocock](https://github.com/mattpocock/skills/) usa todo dia para trabalho com código.
 
 - **[diagnose](./diagnose/SKILL.md)** — Loop disciplinado de diagnóstico para bugs difíceis e regressões de performance: reproduzir → minimizar → hipotetizar → instrumentar → corrigir → testar regressão.
 - **[grill-with-docs](./grill-with-docs/SKILL.md)** — Sessão de sabatina que confronta seu plano contra o domain model existente, refina a terminologia e atualiza `CONTEXT.md` e ADRs inline.

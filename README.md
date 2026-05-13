@@ -1,6 +1,6 @@
 # Skills Para Engenheiros De Verdade
 
-Skills de agente que o Matt Pocock usa todo dia para fazer engenharia de verdade — não vibe coding.
+Skills de agente que o [Matt Pocock](https://github.com/mattpocock/skills/) usa todo dia para fazer engenharia de verdade — não vibe coding.
 
 Desenvolver aplicações reais é difícil. Abordagens como GSD, BMAD e Spec-Kit tentam ajudar tomando conta do processo. Mas ao fazer isso, tiram seu controle e dificultam resolver bugs no próprio processo.
 
@@ -25,7 +25,7 @@ npx skills@latest add leandrocfe/skills
 
 ## Por Que Estas Skills Existem
 
-O Matt Pocock construiu estas skills como forma de corrigir failure modes comuns que ele vê com Claude Code, Codex e outros coding agents.
+O [Matt Pocock](https://github.com/mattpocock/skills/) construiu estas skills como forma de corrigir failure modes comuns que ele vê com Claude Code, Codex e outros coding agents.
 
 ### #1: O Agente Não Fez O Que Eu Quero
 
@@ -42,7 +42,7 @@ O Matt Pocock construiu estas skills como forma de corrigir failure modes comuns
 - [`/grill-me`](./skills/productivity/grill-me/SKILL.md) — para usos não-código
 - [`/grill-with-docs`](./skills/engineering/grill-with-docs/SKILL.md) — igual ao [`/grill-me`](./skills/productivity/grill-me/SKILL.md), mas com extras (veja abaixo)
 
-São algumas das skills mais populares do Matt Pocock. Te ajudam a alinhar com o agente antes de começar, e a pensar fundo sobre a mudança que você está fazendo. Use-as _toda_ vez que quiser fazer uma mudança.
+São algumas das skills mais populares do [Matt Pocock](https://github.com/mattpocock/skills/). Te ajudam a alinhar com o agente antes de começar, e a pensar fundo sobre a mudança que você está fazendo. Use-as _toda_ vez que quiser fazer uma mudança.
 
 ### #2: O Agente É Verboso Demais
 
@@ -52,7 +52,7 @@ São algumas das skills mais populares do Matt Pocock. Te ajudam a alinhar com o
 
 **O Problema**: No começo de um projeto, devs e as pessoas para quem estão construindo o software (os domain experts) geralmente falam línguas diferentes.
 
-Matt Pocock sentiu a mesma tensão com seus agentes. Agentes geralmente são jogados num projeto e devem se virar com o jargão. Aí usam 20 palavras quando 1 bastava.
+[Matt Pocock](https://github.com/mattpocock/skills/) sentiu a mesma tensão com seus agentes. Agentes geralmente são jogados num projeto e devem se virar com o jargão. Aí usam 20 palavras quando 1 bastava.
 
 **A Correção** é uma linguagem compartilhada. É um documento que ajuda agentes a decodificar o jargão usado no projeto.
 
@@ -95,9 +95,9 @@ Isso está embutido em [`/grill-with-docs`](./skills/engineering/grill-with-docs
 
 Para testes automatizados, um loop red-green-refactor é crítico. Aí o agente escreve um teste que falha primeiro, depois conserta o teste. Isso dá ao agente um nível consistente de feedback que resulta em código bem melhor.
 
-O Matt Pocock criou uma **skill [`/tdd`](./skills/engineering/tdd/SKILL.md)** que você pluga em qualquer projeto. Ela incentiva red-green-refactor e dá ao agente bastante orientação sobre o que é teste bom e ruim.
+O [Matt Pocock](https://github.com/mattpocock/skills/) criou uma **skill [`/tdd`](./skills/engineering/tdd/SKILL.md)** que você pluga em qualquer projeto. Ela incentiva red-green-refactor e dá ao agente bastante orientação sobre o que é teste bom e ruim.
 
-Para debug, Matt Pocock também criou uma skill **[`/diagnose`](./skills/engineering/diagnose/SKILL.md)** que embrulha as melhores práticas de debugging num loop simples.
+Para debug, [Matt Pocock](https://github.com/mattpocock/skills/) também criou uma skill **[`/diagnose`](./skills/engineering/diagnose/SKILL.md)** que embrulha as melhores práticas de debugging num loop simples.
 
 ### #4: Construímos Uma Ball Of Mud
 
@@ -122,13 +122,13 @@ E crucial, [`/improve-codebase-architecture`](./skills/engineering/improve-codeb
 
 ### Resumo
 
-Fundamentos de engenharia de software importam mais que nunca. Estas skills são o melhor esforço do Matt Pocock para condensar esses fundamentos em práticas repetíveis, para te ajudar a entregar os melhores apps da sua carreira. Aproveite.
+Fundamentos de engenharia de software importam mais que nunca. Estas skills são o melhor esforço do [Matt Pocock](https://github.com/mattpocock/skills/) para condensar esses fundamentos em práticas repetíveis, para te ajudar a entregar os melhores apps da sua carreira. Aproveite.
 
 ## Referência
 
 ### Engineering
 
-Skills que o Matt Pocock usa todo dia para trabalho com código.
+Skills que o [Matt Pocock](https://github.com/mattpocock/skills/) usa todo dia para trabalho com código.
 
 - **[diagnose](./skills/engineering/diagnose/SKILL.md)** — Loop disciplinado de diagnóstico para bugs difíceis e regressões de performance: reproduzir → minimizar → hipotetizar → instrumentar → corrigir → testar regressão.
 - **[grill-with-docs](./skills/engineering/grill-with-docs/SKILL.md)** — Sessão de sabatina que confronta seu plano contra o domain model existente, refina terminologia e atualiza `CONTEXT.md` e ADRs inline.
@@ -152,10 +152,10 @@ Ferramentas gerais de workflow, não específicas de código.
 
 ## Créditos
 
-Este projeto é uma localização não-oficial em português do Brasil das skills criadas por **Matt Pocock**. Estrutura, fluxo, filosofia e comportamento das skills foram preservados — só linguagem e exemplos foram adaptados ao contexto brasileiro.
+Este projeto é uma localização não-oficial em português do Brasil das skills criadas por **[Matt Pocock](https://github.com/mattpocock/skills/)**. Estrutura, fluxo, filosofia e comportamento das skills foram preservados — só linguagem e exemplos foram adaptados ao contexto brasileiro.
 
 Repositório original: https://github.com/mattpocock/skills
 
 Newsletter do Matt: https://www.aihero.dev/s/skills-newsletter
 
-Todo o crédito de design, intenção e conteúdo original vai para o Matt Pocock.
+Todo o crédito de design, intenção e conteúdo original vai para o [Matt Pocock](https://github.com/mattpocock/skills/).
