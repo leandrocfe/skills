@@ -21,17 +21,17 @@ Confira com o usuário se esses módulos batem com as expectativas. Confira com 
 
 <prd-template>
 
-## Problem Statement
+## Descrição do Problema
 
 O problema que o usuário está enfrentando, da perspectiva do usuário.
 
-## Solution
+## Solução
 
 A solução para o problema, da perspectiva do usuário.
 
-## User Stories
+## Histórias de Usuário
 
-Uma lista LONGA e numerada de user stories. Cada user story no formato:
+Uma lista LONGA e numerada de histórias de usuário. Cada história no formato:
 
 1. Como um <ator>, eu quero um <feature>, para que <benefício>
 
@@ -39,9 +39,9 @@ Uma lista LONGA e numerada de user stories. Cada user story no formato:
 1. Como cliente de mobile banking, eu quero ver o saldo nas minhas contas, para que eu possa tomar decisões mais bem informadas sobre meus gastos
 </user-story-example>
 
-Esta lista de user stories deve ser extremamente extensa e cobrir todos os aspectos do feature.
+Esta lista de histórias de usuário deve ser extremamente extensa e cobrir todos os aspectos do feature.
 
-## Implementation Decisions
+## Decisões de Implementação
 
 Uma lista de decisões de implementação tomadas. Pode incluir:
 
@@ -57,7 +57,7 @@ NÃO inclua paths de arquivo específicos nem code snippets. Podem ficar desatua
 
 Exceção: se um protótipo produziu um snippet que codifica uma decisão mais precisamente que prosa (state machine, reducer, schema, type shape), inline dentro da decisão relevante e note brevemente que veio de protótipo. Apare para as partes ricas em decisão — não um demo funcional, só os pedaços importantes.
 
-## Testing Decisions
+## Decisões de Teste
 
 Uma lista de decisões de teste tomadas. Inclua:
 
@@ -65,11 +65,11 @@ Uma lista de decisões de teste tomadas. Inclua:
 - Quais módulos serão testados
 - Prior art para os testes (i.e. tipos similares de testes na codebase)
 
-## Out of Scope
+## Fora do Escopo
 
 Uma descrição das coisas que estão fora de escopo deste PRD.
 
-## Further Notes
+## Notas Adicionais
 
 Quaisquer notas adicionais sobre o feature.
 

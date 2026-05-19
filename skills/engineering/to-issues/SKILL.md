@@ -35,9 +35,9 @@ Slices podem ser 'HITL' ou 'AFK'. HITL slices precisam de interação humana, co
 
 Apresente a quebra proposta como lista numerada. Para cada slice, mostre:
 
-- **Title**: nome descritivo curto
-- **Type**: HITL / AFK
-- **Blocked by**: quais outras slices (se houver) precisam terminar primeiro
+- **Título**: nome descritivo curto
+- **Tipo**: HITL / AFK
+- **Bloqueado por**: quais outras slices (se houver) precisam terminar primeiro
 - **User stories cobertas**: quais user stories isso endereça (se o material fonte tem)
 
 Pergunte ao usuário:
@@ -56,23 +56,23 @@ Para cada slice aprovada, publique uma nova issue no issue tracker. Use o templa
 Publique issues em ordem de dependência (blockers primeiro) para poder referenciar identificadores de issue reais no campo "Blocked by".
 
 <issue-template>
-## Parent
+## Issue pai
 
 Uma referência à issue parent no issue tracker (se a fonte foi uma issue existente, senão omita esta seção).
 
-## What to build
+## O que construir
 
 Uma descrição concisa desta vertical slice. Descreva o comportamento end-to-end, não implementação camada-a-camada.
 
 Evite paths de arquivo específicos ou code snippets — ficam stale rápido. Exceção: se um protótipo produziu um snippet que codifica uma decisão mais precisamente que prosa (state machine, reducer, schema, type shape), inline aqui e note brevemente que veio de protótipo. Apare para as partes ricas em decisão — não um demo funcional, só os pedaços importantes.
 
-## Acceptance criteria
+## Critérios de aceite
 
 - [ ] Critério 1
 - [ ] Critério 2
 - [ ] Critério 3
 
-## Blocked by
+## Bloqueado por
 
 - Uma referência ao ticket bloqueador (se houver)
 
