@@ -1,11 +1,11 @@
 ---
 name: to-prd
-description: "Transforma o contexto da conversa atual em um PRD e publica no issue tracker do projeto. Use quando o usuário quiser criar um PRD a partir do contexto atual. Use when user wants to create a PRD from the current context."
+description: "Transforma o contexto da conversa atual em um PRD e publica no issue tracker do projeto (GitHub, GitLab ou local). Requer a skill /setup-leandrocfe-skills configurada no projeto para fornecer o issue tracker e triage labels. Pede confirmação do usuário antes de publicar. Use quando o usuário quiser criar um PRD a partir do contexto atual. Use when user wants to create a PRD from the current context."
 ---
 
 Esta skill pega o contexto da conversa atual e o entendimento da codebase e produz um PRD. NÃO entreviste o usuário — só sintetize o que você já sabe.
 
-O issue tracker e o vocabulário de triage labels já deveriam ter sido fornecidos a você — rode `/setup-leandrocfe-skills` se não.
+**Dependência:** Esta skill requer `/setup-leandrocfe-skills` configurada no projeto — ela fornece o issue tracker (GitHub/GitLab/local) e o vocabulário de triage labels. Rode `/setup-leandrocfe-skills` se ainda não configurou.
 
 ## Processo
 
@@ -17,7 +17,7 @@ Um deep module (em oposição a um shallow module) é um que encapsula muita fun
 
 Confira com o usuário se esses módulos batem com as expectativas. Confira com o usuário para quais módulos ele quer testes escritos.
 
-3. Escreva o PRD usando o template abaixo, depois publique no issue tracker do projeto. Aplique a triage label `ready-for-agent` — sem necessidade de triagem adicional.
+3. Escreva o PRD usando o template abaixo. Apresente ao usuário e peça confirmação explícita antes de publicar no issue tracker do projeto. Após confirmação, publique aplicando a triage label `ready-for-agent`.
 
 <prd-template>
 
