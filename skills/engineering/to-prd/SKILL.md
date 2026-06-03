@@ -1,37 +1,35 @@
 ---
 name: to-prd
-description: "Transforma o contexto da conversa atual em um PRD e publica no issue tracker do projeto. Use quando o usuário quiser criar um PRD a partir do contexto atual. Use when user wants to create a PRD from the current context."
+description: "Transforma o contexto da conversa atual em um PRD e publica no issue tracker do projeto (GitHub, GitLab ou local). Requer a skill /setup-leandrocfe-skills configurada no projeto para fornecer o issue tracker e triage labels. Pede confirmação do usuário antes de publicar. Use quando o usuário quiser criar um PRD a partir do contexto atual. Use when user wants to create a PRD from the current context."
 ---
 
 Esta skill pega o contexto da conversa atual e o entendimento da codebase e produz um PRD. NÃO entreviste o usuário — só sintetize o que você já sabe.
 
-O issue tracker e o vocabulário de triage labels já deveriam ter sido fornecidos a você — rode `/setup-leandrocfe-skills` se não.
+**Dependência:** Esta skill requer `/setup-leandrocfe-skills` configurada no projeto — ela fornece o issue tracker (GitHub/GitLab/local) e o vocabulário de triage labels. Rode `/setup-leandrocfe-skills` se ainda não configurou.
 
 ## Processo
 
 1. Explore o repo para entender o estado atual da codebase, se ainda não fez. Use o vocabulário do glossário de domínio do projeto ao longo do PRD, e respeite quaisquer ADRs na área que está tocando.
 
-2. Esboce os módulos principais que você vai precisar construir ou modificar para completar a implementação. Busque ativamente oportunidades de extrair deep modules que possam ser testados em isolamento.
+2. Esboce os seams nos quais vai testar a feature. Prefira seams existentes a novos. Use o seam mais alto possível. Se novos seams forem necessários, proponha-os no ponto mais alto que puder.
 
-Um deep module (em oposição a um shallow module) é um que encapsula muita funcionalidade numa interface simples e testável que muda raramente.
+Confira com o usuário se esses seams batem com as expectativas.
 
-Confira com o usuário se esses módulos batem com as expectativas. Confira com o usuário para quais módulos ele quer testes escritos.
-
-3. Escreva o PRD usando o template abaixo, depois publique no issue tracker do projeto. Aplique a triage label `ready-for-agent` — sem necessidade de triagem adicional.
+3. Escreva o PRD usando o template abaixo. Apresente ao usuário e peça confirmação explícita antes de publicar no issue tracker do projeto. Após confirmação, publique aplicando a triage label `ready-for-agent`.
 
 <prd-template>
 
-## Problem Statement
+## Descrição do Problema
 
 O problema que o usuário está enfrentando, da perspectiva do usuário.
 
-## Solution
+## Solução
 
 A solução para o problema, da perspectiva do usuário.
 
-## User Stories
+## Histórias de Usuário
 
-Uma lista LONGA e numerada de user stories. Cada user story no formato:
+Uma lista LONGA e numerada de histórias de usuário. Cada história no formato:
 
 1. Como um <ator>, eu quero um <feature>, para que <benefício>
 
@@ -39,9 +37,9 @@ Uma lista LONGA e numerada de user stories. Cada user story no formato:
 1. Como cliente de mobile banking, eu quero ver o saldo nas minhas contas, para que eu possa tomar decisões mais bem informadas sobre meus gastos
 </user-story-example>
 
-Esta lista de user stories deve ser extremamente extensa e cobrir todos os aspectos do feature.
+Esta lista de histórias de usuário deve ser extremamente extensa e cobrir todos os aspectos do feature.
 
-## Implementation Decisions
+## Decisões de Implementação
 
 Uma lista de decisões de implementação tomadas. Pode incluir:
 
@@ -57,7 +55,7 @@ NÃO inclua paths de arquivo específicos nem code snippets. Podem ficar desatua
 
 Exceção: se um protótipo produziu um snippet que codifica uma decisão mais precisamente que prosa (state machine, reducer, schema, type shape), inline dentro da decisão relevante e note brevemente que veio de protótipo. Apare para as partes ricas em decisão — não um demo funcional, só os pedaços importantes.
 
-## Testing Decisions
+## Decisões de Teste
 
 Uma lista de decisões de teste tomadas. Inclua:
 
@@ -65,11 +63,11 @@ Uma lista de decisões de teste tomadas. Inclua:
 - Quais módulos serão testados
 - Prior art para os testes (i.e. tipos similares de testes na codebase)
 
-## Out of Scope
+## Fora do Escopo
 
 Uma descrição das coisas que estão fora de escopo deste PRD.
 
-## Further Notes
+## Notas Adicionais
 
 Quaisquer notas adicionais sobre o feature.
 
