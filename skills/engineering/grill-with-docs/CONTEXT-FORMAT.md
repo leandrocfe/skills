@@ -10,7 +10,7 @@
 ## Language
 
 **Order**:
-{Uma descrição concisa do termo}
+{Uma ou duas frases descrevendo o termo}
 _Avoid_: Purchase, transaction
 
 **Invoice**:
@@ -20,31 +20,14 @@ _Avoid_: Bill, payment request
 **Customer**:
 A person or organization that places orders.
 _Avoid_: Client, buyer, account
-
-## Relationships
-
-- An **Order** produces one or more **Invoices**
-- An **Invoice** belongs to exactly one **Customer**
-
-## Example dialogue
-
-> **Dev:** "When a **Customer** places an **Order**, do we create the **Invoice** immediately?"
-> **Domain expert:** "No — an **Invoice** is only generated once a **Fulfillment** is confirmed."
-
-## Flagged ambiguities
-
-- "account" was used to mean both **Customer** and **User** — resolved: these are distinct concepts.
 ```
 
 ## Regras
 
 - **Seja opinativo.** Quando múltiplas palavras existem para o mesmo conceito, escolha a melhor e liste as outras como aliases a evitar.
-- **Sinalize conflitos explicitamente.** Se um termo é usado ambiguamente, traga à tona em "Flagged ambiguities" com uma resolução clara.
-- **Mantenha definições apertadas.** Uma frase no máximo. Defina o que ISSO É, não o que ISSO FAZ.
-- **Mostre relações.** Use nomes de termos em bold e expresse cardinalidade onde óbvio.
+- **Mantenha definições apertadas.** Uma ou duas frases no máximo. Defina o que ISSO É, não o que ISSO FAZ.
 - **Inclua só termos específicos ao contexto deste projeto.** Conceitos gerais de programação (timeouts, error types, padrões utilitários) não cabem mesmo que o projeto use bastante. Antes de adicionar um termo, pergunte: é conceito único a este contexto ou conceito geral de programação? Só o primeiro cabe.
 - **Agrupe termos sob subheaders** quando clusters naturais emergem. Se todos os termos pertencem a uma única área coesa, lista plana serve.
-- **Escreva um example dialogue.** Uma conversa entre dev e domain expert que demonstra como os termos interagem naturalmente e esclarece fronteiras entre conceitos relacionados.
 
 ## Repos de contexto único vs múltiplo
 
