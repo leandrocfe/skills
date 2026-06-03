@@ -44,20 +44,30 @@ Depois use a ferramenta Agent com `subagent_type=Explore` para caminhar pela cod
 
 Aplique o **deletion test** a qualquer coisa que você suspeita ser shallow: deletar concentraria complexidade ou só moveria? Um "sim, concentra" é o sinal que você quer.
 
-### 2. Apresentar candidatos
+### 2. Apresentar candidatos como relatório HTML
 
-Apresente uma lista numerada de deepening opportunities. Para cada candidato:
+Escreva um arquivo HTML self-contained no diretório temp do OS para que nada caia no repo. Resolva o temp dir a partir de `$TMPDIR`, com fallback para `/tmp` (ou `%TEMP%` no Windows), e escreva em `<tmpdir>/architecture-review-<timestamp>.html` para que cada execução tenha um arquivo novo. Abra para o usuário — `xdg-open <path>` no Linux, `open <path>` no macOS, `start <path>` no Windows — e informe o path absoluto.
+
+O relatório usa **Tailwind via CDN** para layout e estilo, e **Mermaid via CDN** para diagramas onde um graph/flow/sequence comunica a estrutura de forma confiável. Misture Mermaid com visuais CSS/SVG artesanais — use Mermaid quando as relações têm forma de grafo (call graphs, dependências, sequences), e divs/SVG manuais quando quiser algo mais editorial (mass diagrams, cross-sections, collapse animations). Cada candidato ganha uma **visualização before/after**. Seja visual.
+
+Para cada candidato, o mesmo template de antes, mas renderizado como card:
 
 - **Files** — quais arquivos/módulos estão envolvidos
 - **Problem** — por que a arquitetura atual está causando fricção
 - **Solution** — descrição em português simples do que mudaria
-- **Benefits** — explicado em termos de locality e leverage, e também em como os testes melhorariam
+- **Benefits** — explicado em termos de locality e leverage, e como os testes melhorariam
+- **Before / After diagram** — lado a lado, desenhado sob medida, ilustrando o shallowness e o deepening
+- **Recommendation strength** — um de `Strong`, `Worth exploring`, `Speculative`, renderizado como badge
+
+Encerre o relatório com uma seção **Top recommendation**: qual candidato você atacaria primeiro e por quê.
 
 **Use vocabulário do CONTEXT.md para o domínio, e vocabulário do [LANGUAGE.md](LANGUAGE.md) para arquitetura.** Se `CONTEXT.md` define "Order", fale sobre "o módulo de Order intake" — não sobre "o FooBarHandler", e não "o Order service".
 
-**Conflitos com ADR**: se um candidato contradiz um ADR existente, só traga à tona quando a fricção for real o suficiente para justificar revisitar o ADR. Marque claramente (ex.: _"contradiz ADR-0007 — mas vale reabrir porque…"_). Não liste todo refactor teórico que um ADR proíbe.
+**Conflitos com ADR**: se um candidato contradiz um ADR existente, só traga à tona quando a fricção for real o suficiente para justificar revisitar o ADR. Marque claramente no card (ex.: callout em amber: _"contradiz ADR-0007 — mas vale reabrir porque…"_). Não liste todo refactor teórico que um ADR proíbe.
 
-NÃO proponha interfaces ainda. Pergunte ao usuário: "Qual destes você quer explorar?"
+Veja [HTML-REPORT.md](HTML-REPORT.md) para o scaffold HTML completo, padrões de diagrama e guia de estilo.
+
+NÃO proponha interfaces ainda. Após escrever o arquivo, pergunte ao usuário: "Qual destes você quer explorar?"
 
 ### 3. Loop de sabatina
 
