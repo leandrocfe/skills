@@ -11,11 +11,9 @@ Esta skill pega o contexto da conversa atual e o entendimento da codebase e prod
 
 1. Explore o repo para entender o estado atual da codebase, se ainda não fez. Use o vocabulário do glossário de domínio do projeto ao longo do PRD, e respeite quaisquer ADRs na área que está tocando.
 
-2. Esboce os módulos principais que você vai precisar construir ou modificar para completar a implementação. Busque ativamente oportunidades de extrair deep modules que possam ser testados em isolamento.
+2. Esboce os seams nos quais vai testar a feature. Prefira seams existentes a novos. Use o seam mais alto possível. Se novos seams forem necessários, proponha-os no ponto mais alto que puder.
 
-Um deep module (em oposição a um shallow module) é um que encapsula muita funcionalidade numa interface simples e testável que muda raramente.
-
-Confira com o usuário se esses módulos batem com as expectativas. Confira com o usuário para quais módulos ele quer testes escritos.
+Confira com o usuário se esses seams batem com as expectativas.
 
 3. Escreva o PRD usando o template abaixo. Apresente ao usuário e peça confirmação explícita antes de publicar no issue tracker do projeto. Após confirmação, publique aplicando a triage label `ready-for-agent`.
 
