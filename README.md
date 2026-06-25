@@ -6,6 +6,10 @@ Desenvolver aplicações reais é difícil. Abordagens como GSD, BMAD e Spec-Kit
 
 Estas skills são pequenas, fáceis de adaptar e componíveis. Funcionam com qualquer modelo. São baseadas em décadas de experiência de engenharia. Hackeie. Torne suas. Aproveite.
 
+Se quiser acompanhar as mudanças destas skills e qualquer uma nova que ele criar, pode se juntar a ~60.000 outros devs na newsletter dele:
+
+[Inscreva-se na Newsletter](https://www.aihero.dev/s/skills-newsletter)
+
 ## Quickstart (setup de 30 segundos)
 
 1. Rode o installer do skills.sh:
@@ -17,8 +21,9 @@ npx skills@latest add leandrocfe/skills
 2. Escolha as skills que quer, e em quais coding agents instalar. **Garanta que selecionou `/setup-leandrocfe-skills`**.
 
 3. Rode `/setup-leandrocfe-skills` no seu agente. Ele vai:
-   - Perguntar qual issue tracker você quer usar (GitHub, Linear ou arquivos locais)
-   - Perguntar quais labels você aplica em tickets quando triagem (`/triage` usa labels)
+   - Perguntar qual issue tracker você quer usar (GitHub, GitLab, Linear ou arquivos locais)
+   - Perguntar quais labels você aplica em tickets quando faz triage (`/triage` usa labels)
+   - Perguntar se PRs externos devem ser uma superfície de request para `/triage`
    - Perguntar onde você quer salvar os docs que criamos
 
 4. Pronto — você está apto.
@@ -40,9 +45,9 @@ O [Matt Pocock](https://github.com/mattpocock/skills/) construiu estas skills co
 **A Correção** é usar:
 
 - [`/grill-me`](./skills/productivity/grill-me/SKILL.md) — para usos não-código
-- [`/grill-with-docs`](./skills/engineering/grill-with-docs/SKILL.md) — igual ao [`/grill-me`](./skills/productivity/grill-me/SKILL.md), mas com extras (veja abaixo)
+- [`/grill-with-docs`](./skills/engineering/grill-with-docs/SKILL.md) — igual ao [`/grill-me`](./skills/productivity/grill-me/SKILL.md), mas constrói o domain model, atualiza `CONTEXT.md` e ADRs
 
-São algumas das skills mais populares do [Matt Pocock](https://github.com/mattpocock/skills/). Te ajudam a alinhar com o agente antes de começar, e a pensar fundo sobre a mudança que você está fazendo. Use-as _toda_ vez que quiser fazer uma mudança.
+São algumas das skills mais populares. Te ajudam a alinhar com o agente antes de começar, e a pensar fundo sobre a mudança que você está fazendo. Use-as _toda_ vez que quiser fazer uma mudança.
 
 ### #2: O Agente É Verboso Demais
 
@@ -52,7 +57,7 @@ São algumas das skills mais populares do [Matt Pocock](https://github.com/mattp
 
 **O Problema**: No começo de um projeto, devs e as pessoas para quem estão construindo o software (os domain experts) geralmente falam línguas diferentes.
 
-[Matt Pocock](https://github.com/mattpocock/skills/) sentiu a mesma tensão com seus agentes. Agentes geralmente são jogados num projeto e devem se virar com o jargão. Aí usam 20 palavras quando 1 bastava.
+Matt sentiu a mesma tensão com seus agents. Agentes geralmente são jogados num projeto e devem se virar com o jargão. Aí usam 20 palavras quando 1 bastava.
 
 **A Correção** é uma linguagem compartilhada. É um documento que ajuda agentes a decodificar o jargão usado no projeto.
 
@@ -70,9 +75,9 @@ Essa concisão paga dividendo sessão após sessão.
 
 </details>
 
-Isso está embutido em [`/grill-with-docs`](./skills/engineering/grill-with-docs/SKILL.md). É uma sessão de sabatina, mas que te ajuda a construir uma linguagem compartilhada com a IA e a documentar decisões difíceis de explicar em ADRs.
+Isso está embutido em [`/grill-with-docs`](./skills/engineering/grill-with-docs/SKILL.md) + [`/domain-modeling`](./skills/engineering/domain-modeling/SKILL.md). É uma sessão de sabatina que te ajuda a construir uma linguagem compartilhada com a IA e documentar decisões difíceis de explicar em ADRs.
 
-É difícil explicar o quanto isso é poderoso. Pode ser a única técnica mais legal deste repo. Experimente e veja.
+É difícil explicar o quanto isso é poderoso. Pode ser uma das técnicas mais legais deste repo. Experimente e veja.
 
 > [!TIP]
 > Uma linguagem compartilhada tem muitos outros benefícios além de reduzir verbosidade:
@@ -95,9 +100,9 @@ Isso está embutido em [`/grill-with-docs`](./skills/engineering/grill-with-docs
 
 Para testes automatizados, um loop red-green-refactor é crítico. Aí o agente escreve um teste que falha primeiro, depois conserta o teste. Isso dá ao agente um nível consistente de feedback que resulta em código bem melhor.
 
-O [Matt Pocock](https://github.com/mattpocock/skills/) criou uma **skill [`/tdd`](./skills/engineering/tdd/SKILL.md)** que você pluga em qualquer projeto. Ela incentiva red-green-refactor e dá ao agente bastante orientação sobre o que é teste bom e ruim.
+O Matt criou uma **skill [`/tdd`](./skills/engineering/tdd/SKILL.md)** que você pluga em qualquer projeto. Ela incentiva red-green-refactor e dá ao agente bastante orientação sobre o que é teste bom e ruim.
 
-Para debug, [Matt Pocock](https://github.com/mattpocock/skills/) também criou uma skill **[`/diagnose`](./skills/engineering/diagnose/SKILL.md)** que embrulha as melhores práticas de debugging num loop simples.
+Para debug, Matt também criou uma skill **[`/diagnosing-bugs`](./skills/engineering/diagnosing-bugs/SKILL.md)** que embrulha as melhores práticas de debugging num loop simples e disciplinado.
 
 ### #4: Construímos Uma Ball Of Mud
 
@@ -116,43 +121,65 @@ Para debug, [Matt Pocock](https://github.com/mattpocock/skills/) também criou u
 Isso está embutido em cada camada destas skills:
 
 - [`/to-prd`](./skills/engineering/to-prd/SKILL.md) te sabatina sobre quais módulos você está tocando antes de criar um PRD
-- [`/zoom-out`](./skills/engineering/zoom-out/SKILL.md) diz ao agente para explicar código no contexto do sistema inteiro
+- [`/improve-codebase-architecture`](./skills/engineering/improve-codebase-architecture/SKILL.md) te ajuda a resgatar uma codebase que virou ball of mud. Recomendo rodar na sua codebase a cada poucos dias.
 
-E crucial, [`/improve-codebase-architecture`](./skills/engineering/improve-codebase-architecture/SKILL.md) te ajuda a resgatar uma codebase que virou ball of mud. Recomendo rodar na sua codebase a cada poucos dias.
+## Resumo
 
-### Resumo
-
-Fundamentos de engenharia de software importam mais que nunca. Estas skills são o melhor esforço do [Matt Pocock](https://github.com/mattpocock/skills/) para condensar esses fundamentos em práticas repetíveis, para te ajudar a entregar os melhores apps da sua carreira. Aproveite.
+Fundamentos de engenharia de software importam mais que nunca. Estas skills são o melhor esforço do Matt para condensar esses fundamentos em práticas repetíveis, para te ajudar a entregar os melhores apps da sua carreira. Aproveite.
 
 ## Referência
 
+Estas se dividem em um eixo — quem pode invocá-las. **User-invoked** skills são alcançáveis apenas quando você as digita (ex: `/grill-me`); o trabalho delas é orquestrar. **Model-invoked** skills podem ser invocadas por você _ou_ alcançadas automaticamente pelo agent quando a task encaixa; elas contêm a disciplina reutilizável. Uma user-invoked skill pode invocar model-invoked skills, mas nunca outra user-invoked.
+
 ### Engineering
 
-Skills que o [Matt Pocock](https://github.com/mattpocock/skills/) usa todo dia para trabalho com código.
+Skills que uso todo dia para trabalho com código.
 
-- **[diagnose](./skills/engineering/diagnose/SKILL.md)** — Loop disciplinado de diagnóstico para bugs difíceis e regressões de performance: reproduzir → minimizar → hipotetizar → instrumentar → corrigir → testar regressão.
-- **[grill-with-docs](./skills/engineering/grill-with-docs/SKILL.md)** — Sessão de sabatina que confronta seu plano contra o domain model existente, refina terminologia e atualiza `CONTEXT.md` e ADRs inline.
-- **[triage](./skills/engineering/triage/SKILL.md)** — Triagem de issues através de uma máquina-de-estado de triage roles.
-- **[improve-codebase-architecture](./skills/engineering/improve-codebase-architecture/SKILL.md)** — Encontra oportunidades de aprofundamento na codebase, informado pela linguagem de domínio em `CONTEXT.md` e pelas decisões em `docs/adr/`.
-- **[setup-leandrocfe-skills](./skills/engineering/setup-leandrocfe-skills/SKILL.md)** — Faz o scaffold da config por-repo (issue tracker, vocabulário de triage labels, layout de docs de domínio) que as outras engineering skills consomem. Rode uma vez por repo antes de usar `to-issues`, `to-prd`, `triage`, `diagnose`, `tdd`, `improve-codebase-architecture` ou `zoom-out`.
-- **[tdd](./skills/engineering/tdd/SKILL.md)** — Test-driven development com loop red-green-refactor. Constrói features ou corrige bugs uma vertical slice por vez.
-- **[to-issues](./skills/engineering/to-issues/SKILL.md)** — Quebra qualquer plano, spec ou PRD em GitHub issues independentes via vertical slices.
-- **[to-prd](./skills/engineering/to-prd/SKILL.md)** — Transforma o contexto da conversa atual em PRD e submete como GitHub issue. Sem entrevista — só sintetiza o que você já discutiu.
-- **[zoom-out](./skills/engineering/zoom-out/SKILL.md)** — Pede ao agente para dar zoom out e oferecer contexto mais amplo ou perspectiva de mais alto nível sobre uma seção de código desconhecida.
+**User-invoked**
+
+- **[ask-matt](./skills/engineering/ask-matt/SKILL.md)** — Pergunte qual skill ou fluxo encaixa na sua situação. Um router sobre as user-invoked skills deste repo.
+- **[grill-with-docs](./skills/engineering/grill-with-docs/SKILL.md)** — Sessão de sabatina que também constrói o domain model do projeto, afiando terminologia e atualizando `CONTEXT.md` e ADRs inline.
+- **[triage](./skills/engineering/triage/SKILL.md)** — Move issues através de uma máquina de estados de triage roles.
+- **[improve-codebase-architecture](./skills/engineering/improve-codebase-architecture/SKILL.md)** — Escaneia uma codebase em busca de oportunidades de deepening, apresenta como relatório HTML visual e depois sabatina a escolhida.
+- **[setup-leandrocfe-skills](./skills/engineering/setup-leandrocfe-skills/SKILL.md)** — Configura este repo para as engineering skills (issue tracker, triage labels, domain doc layout). Rode uma vez por repo antes de usar as outras engineering skills.
+- **[to-issues](./skills/engineering/to-issues/SKILL.md)** — Quebra qualquer plano, spec ou PRD em issues independentemente pegáveis usando vertical slices.
+- **[to-prd](./skills/engineering/to-prd/SKILL.md)** — Transforma a conversa atual em um PRD e publica no issue tracker. Sem entrevista — só sintetiza o que você já discutiu.
 - **[prototype](./skills/engineering/prototype/SKILL.md)** — Constrói um protótipo descartável para flush out de design — seja uma terminal app executável para perguntas de estado/business logic, seja várias variações radicalmente diferentes de UI alternáveis numa rota só.
+
+**Model-invoked**
+
+- **[diagnosing-bugs](./skills/engineering/diagnosing-bugs/SKILL.md)** — Loop disciplinado de diagnóstico para bugs difíceis e regressões de performance: reproduzir → minimizar → hipotetizar → instrumentar → corrigir → testar regressão.
+- **[tdd](./skills/engineering/tdd/SKILL.md)** — Test-driven development com loop red-green-refactor. Constrói features ou corrige bugs uma vertical slice por vez.
+- **[domain-modeling](./skills/engineering/domain-modeling/SKILL.md)** — Constrói e afia ativamente o modelo de domínio de um projeto — desafia termos contra o glossário, stress-testa com cenários de edge-case e atualiza `CONTEXT.md` e ADRs inline.
+- **[codebase-design](./skills/engineering/codebase-design/SKILL.md)** — Disciplina e vocabulário compartilhados para projetar deep modules: muito comportamento atrás de uma interface pequena, colocado em um seam limpo, testável através da interface.
 
 ### Productivity
 
 Ferramentas gerais de workflow, não específicas de código.
 
-- **[caveman](./skills/productivity/caveman/SKILL.md)** — Modo de comunicação ultra-comprimido. Corta ~75% do uso de tokens dropando filler enquanto mantém precisão técnica completa.
+**User-invoked**
+
 - **[grill-me](./skills/productivity/grill-me/SKILL.md)** — Seja sabatinado sem dó sobre um plano ou design até cada ramo da árvore de decisão estar resolvido.
-- **[handoff](./skills/productivity/handoff/SKILL.md)** — Compacta a conversa atual em documento de handoff para outro agente continuar o trabalho.
-- **[write-a-skill](./skills/productivity/write-a-skill/SKILL.md)** — Cria novas skills com estrutura correta, progressive disclosure e recursos empacotados.
+- **[handoff](./skills/productivity/handoff/SKILL.md)** — Compacta a conversa atual em documento de handoff para outro agent continuar o trabalho.
+- **[teach](./skills/productivity/teach/SKILL.md)** — Ensine um novo skill ou conceito ao usuário em múltiplas sessões, usando o diretório atual como workspace de ensino stateful.
+- **[writing-great-skills](./skills/productivity/writing-great-skills/SKILL.md)** — Referência para escrever e editar skills bem: o vocabulário e princípios que tornam uma skill previsível.
+
+**Model-invoked**
+
+- **[grilling](./skills/productivity/grilling/SKILL.md)** — Entrevista o usuário sem dó sobre um plano ou design até cada ramo da árvore de decisão estar resolvido. O loop reutilizável por trás de `grill-me` e `grill-with-docs`.
+
+### Misc
+
+Ferramentas que mantenho por perto mas raramente uso.
+
+- **[git-guardrails-claude-code](./skills/misc/git-guardrails-claude-code/SKILL.md)** — Configura hooks do Claude Code para bloquear comandos git perigosos (push, reset --hard, clean, etc.) antes que executem.
+- **[migrate-to-shoehorn](./skills/misc/migrate-to-shoehorn/SKILL.md)** — Migra arquivos de teste de type assertions `as` para @total-typescript/shoehorn.
+- **[scaffold-exercises](./skills/misc/scaffold-exercises/SKILL.md)** — Cria estruturas de diretório de exercícios com seções, problems, solutions e explainers.
+- **[setup-pre-commit](./skills/misc/setup-pre-commit/SKILL.md)** — Configura hooks pre-commit com Husky, lint-staged, Prettier, type checking e testes.
 
 ## Créditos
 
-Este projeto é uma localização não-oficial em português do Brasil das skills criadas por **[Matt Pocock](https://github.com/mattpocock/skills/)**. Estrutura, fluxo, filosofia e comportamento das skills foram preservados — só linguagem e exemplos foram adaptados ao contexto brasileiro.
+Este projeto é uma adaptação não-oficial em português do Brasil das skills criadas por **[Matt Pocock](https://github.com/mattpocock/skills/)**. Estrutura, fluxo, filosofia e comportamento das skills foram preservados — linguagem e exemplos foram adaptados ao contexto brasileiro.
 
 Repositório original: https://github.com/mattpocock/skills
 

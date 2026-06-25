@@ -1,13 +1,16 @@
 ---
 name: handoff
-description: "Compacta a conversa atual em um documento de handoff para outro agente continuar o trabalho. Use when user wants to hand off work to a fresh agent, save context for later, or mentions handoff."
-argument-hint: "Para que a próxima sessão vai ser usada?"
+description: Compact the current conversation into a handoff document for another agent to pick up.
+argument-hint: "What will the next session be used for?"
+disable-model-invocation: true
 ---
 
-Escreva um documento de handoff resumindo a conversa atual para que um agente novo possa continuar o trabalho. Salve num caminho gerado por `mktemp -t handoff-XXXXXX.md` (leia o arquivo antes de escrever nele).
+Write a handoff document summarising the current conversation so a fresh agent can continue the work. Save to the temporary directory of the user's OS - not the current workspace.
 
-Sugira as skills a serem usadas, se houver, pela próxima sessão.
+Include a "suggested skills" section in the document, which suggests skills that the agent should invoke.
 
-Não duplique conteúdo já capturado em outros artefatos (PRDs, planos, ADRs, issues, commits, diffs). Referencie por caminho ou URL.
+Do not duplicate content already captured in other artifacts (PRDs, plans, ADRs, issues, commits, diffs). Reference them by path or URL instead.
 
-Se o usuário passou argumentos, trate-os como descrição do que a próxima sessão vai focar e ajuste o doc.
+Redact any sensitive information, such as API keys, passwords, or personally identifiable information.
+
+If the user passed arguments, treat them as a description of what the next session will focus on and tailor the doc accordingly.

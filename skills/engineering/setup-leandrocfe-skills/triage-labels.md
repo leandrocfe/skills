@@ -1,15 +1,15 @@
 # Triage Labels
 
-As skills falam em termos de cinco triage roles canônicas. Este arquivo mapeia essas roles para as strings de label reais usadas no issue tracker deste repo.
+The skills speak in terms of five canonical triage roles. This file maps those roles to the actual label strings used in this repo's issue tracker.
 
-| Label em leandrocfe/skills | Label no nosso tracker | Significado                              |
-| -------------------------- | ---------------------- | ---------------------------------------- |
-| `needs-triage`             | `needs-triage`         | Mantenedor precisa avaliar esta issue    |
-| `needs-info`               | `needs-info`           | Esperando reporter por mais informação   |
-| `ready-for-agent`          | `ready-for-agent`      | Totalmente especificada, pronta para AFK |
-| `ready-for-human`          | `ready-for-human`      | Exige implementação humana               |
-| `wontfix`                  | `wontfix`              | Não vai ser feita                        |
+| Label in mattpocock/skills | Label in our tracker | Meaning                                  |
+| -------------------------- | -------------------- | ---------------------------------------- |
+| `needs-triage`             | `needs-triage`       | Maintainer needs to evaluate this issue  |
+| `needs-info`               | `needs-info`         | Waiting on reporter for more information |
+| `ready-for-agent`          | `ready-for-agent`    | Fully specified, ready for an AFK agent  |
+| `ready-for-human`          | `ready-for-human`    | Requires human implementation            |
+| `wontfix`                  | `wontfix`            | Will not be actioned                     |
 
-Quando uma skill menciona uma role (ex.: "aplique a triage label AFK-ready"), use a string de label correspondente desta tabela.
+When a skill mentions a role (e.g. "apply the AFK-ready triage label"), use the corresponding label string from this table.
 
-Edite a coluna da direita para bater com qualquer vocabulário que você de fato usa.
+Edit the right-hand column to match whatever vocabulary you actually use.
