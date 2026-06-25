@@ -1,74 +1,75 @@
 ---
 name: to-prd
-description: "Transforma o contexto da conversa atual em um PRD e publica no issue tracker do projeto (GitHub, GitLab ou local). Requer a skill /setup-leandrocfe-skills configurada no projeto para fornecer o issue tracker e triage labels. Pede confirmação do usuário antes de publicar. Use quando o usuário quiser criar um PRD a partir do contexto atual. Use when user wants to create a PRD from the current context."
+description: Transforma a conversa atual em um PRD e publica no issue tracker do projeto — sem entrevista, só síntese do que você já discutiu.
+disable-model-invocation: true
 ---
 
-Esta skill pega o contexto da conversa atual e o entendimento da codebase e produz um PRD. NÃO entreviste o usuário — só sintetize o que você já sabe.
+Esta skill pega o contexto atual da conversa e o entendimento da codebase e produz um PRD. NÃO entreviste o usuário — apenas sintetize o que já sabe.
 
-**Dependência:** Esta skill requer `/setup-leandrocfe-skills` configurada no projeto — ela fornece o issue tracker (GitHub/GitLab/local) e o vocabulário de triage labels. Rode `/setup-leandrocfe-skills` se ainda não configurou.
+O issue tracker e vocabulário de triage labels devem ter sido fornecidos a você — rode `/setup-leandrocfe-skills` se não.
 
-## Processo
+## Process
 
-1. Explore o repo para entender o estado atual da codebase, se ainda não fez. Use o vocabulário do glossário de domínio do projeto ao longo do PRD, e respeite quaisquer ADRs na área que está tocando.
+1. Explore the repo to understand the current state of the codebase, if you haven't already. Use the project's domain glossary vocabulary throughout the PRD, and respect any ADRs in the area you're touching.
 
-2. Esboce os seams nos quais vai testar a feature. Prefira seams existentes a novos. Use o seam mais alto possível. Se novos seams forem necessários, proponha-os no ponto mais alto que puder.
+2. Sketch out the seams at which you're going to test the feature. Existing seams should be preferred to new ones. Use the highest seam possible. If new seams are needed, propose them at the highest point you can. The fewer seams across the codebase, the better - the ideal number is one.
 
-Confira com o usuário se esses seams batem com as expectativas.
+Check with the user that these seams match their expectations.
 
-3. Escreva o PRD usando o template abaixo. Apresente ao usuário e peça confirmação explícita antes de publicar no issue tracker do projeto. Após confirmação, publique aplicando a triage label `ready-for-agent`.
+3. Write the PRD using the template below, then publish it to the project issue tracker. Apply the `ready-for-agent` triage label - no need for additional triage.
 
 <prd-template>
 
-## Descrição do Problema
+## Problem Statement
 
-O problema que o usuário está enfrentando, da perspectiva do usuário.
+The problem that the user is facing, from the user's perspective.
 
-## Solução
+## Solution
 
-A solução para o problema, da perspectiva do usuário.
+The solution to the problem, from the user's perspective.
 
-## Histórias de Usuário
+## User Stories
 
-Uma lista LONGA e numerada de histórias de usuário. Cada história no formato:
+A LONG, numbered list of user stories. Each user story should be in the format of:
 
-1. Como um <ator>, eu quero um <feature>, para que <benefício>
+1. As an <actor>, I want a <feature>, so that <benefit>
 
 <user-story-example>
-1. Como cliente de mobile banking, eu quero ver o saldo nas minhas contas, para que eu possa tomar decisões mais bem informadas sobre meus gastos
+1. As a mobile bank customer, I want to see balance on my accounts, so that I can make better informed decisions about my spending
 </user-story-example>
 
-Esta lista de histórias de usuário deve ser extremamente extensa e cobrir todos os aspectos do feature.
+This list of user stories should be extremely extensive and cover all aspects of the feature.
 
-## Decisões de Implementação
+## Implementation Decisions
 
-Uma lista de decisões de implementação tomadas. Pode incluir:
+A list of implementation decisions that were made. This can include:
 
-- Os módulos que serão construídos/modificados
-- As interfaces desses módulos que serão modificadas
-- Esclarecimentos técnicos do dev
-- Decisões arquiteturais
+- The modules that will be built/modified
+- The interfaces of those modules that will be modified
+- Technical clarifications from the developer
+- Architectural decisions
 - Schema changes
 - API contracts
-- Interações específicas
+- Specific interactions
 
-NÃO inclua paths de arquivo específicos nem code snippets. Podem ficar desatualizados rapidamente.
+Do NOT include specific file paths or code snippets. They may end up being outdated very quickly.
 
-Exceção: se um protótipo produziu um snippet que codifica uma decisão mais precisamente que prosa (state machine, reducer, schema, type shape), inline dentro da decisão relevante e note brevemente que veio de protótipo. Apare para as partes ricas em decisão — não um demo funcional, só os pedaços importantes.
+Exception: if a prototype produced a snippet that encodes a decision more precisely than prose can (state machine, reducer, schema, type shape), inline it within the relevant decision and note briefly that it came from a prototype. Trim to the decision-rich parts — not a working demo, just the important bits.
 
-## Decisões de Teste
+## Testing Decisions
 
-Uma lista de decisões de teste tomadas. Inclua:
+A list of testing decisions that were made. Include:
 
-- Uma descrição do que faz um bom teste (só testar comportamento externo, não detalhes de implementação)
-- Quais módulos serão testados
-- Prior art para os testes (i.e. tipos similares de testes na codebase)
+- A description of what makes a good test (only test external behavior, not implementation details)
+- Which modules will be tested
+- Prior art for the tests (i.e. similar types of tests in the codebase)
 
-## Fora do Escopo
+## Out of Scope
 
-Uma descrição das coisas que estão fora de escopo deste PRD.
+A description of the things that are out of scope for this PRD.
 
-## Notas Adicionais
+## Further Notes
 
-Quaisquer notas adicionais sobre o feature.
+Any further notes about the feature.
 
 </prd-template>

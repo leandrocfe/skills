@@ -1,22 +1,34 @@
 # Issue tracker: GitHub
 
-Issues e PRDs deste repo vivem como GitHub issues. Use a CLI `gh` para todas as operações.
+Issues and PRDs for this repo live as GitHub issues. Use the `gh` CLI for all operations.
 
-## Convenções
+## Conventions
 
-- **Criar uma issue**: `gh issue create --title "..." --body "..."`. Use heredoc para bodies multi-linha.
-- **Ler uma issue**: `gh issue view <number> --comments`, filtrando comments com `jq` e também buscando labels.
-- **Listar issues**: `gh issue list --state open --json number,title,body,labels,comments --jq '[.[] | {number, title, body, labels: [.labels[].name], comments: [.comments[].body]}]'` com filtros `--label` e `--state` apropriados.
-- **Comentar numa issue**: `gh issue comment <number> --body "..."`
-- **Aplicar / remover labels**: `gh issue edit <number> --add-label "..."` / `--remove-label "..."`
-- **Fechar**: `gh issue close <number> --comment "..."`
+- **Create an issue**: `gh issue create --title "..." --body "..."`. Use a heredoc for multi-line bodies.
+- **Read an issue**: `gh issue view <number> --comments`, filtering comments by `jq` and also fetching labels.
+- **List issues**: `gh issue list --state open --json number,title,body,labels,comments --jq '[.[] | {number, title, body, labels: [.labels[].name], comments: [.comments[].body]}]'` with appropriate `--label` and `--state` filters.
+- **Comment on an issue**: `gh issue comment <number> --body "..."`
+- **Apply / remove labels**: `gh issue edit <number> --add-label "..."` / `--remove-label "..."`
+- **Close**: `gh issue close <number> --comment "..."`
 
-Infira o repo a partir de `git remote -v` — `gh` faz isso automaticamente quando rodado dentro de um clone.
+Infer the repo from `git remote -v` — `gh` does this automatically when run inside a clone.
 
-## Quando uma skill diz "publicar no issue tracker"
+## Pull requests as a triage surface
 
-Crie uma GitHub issue.
+**PRs as a request surface: no.** _(Set to `yes` if this repo treats external PRs as feature requests; `/triage` reads this flag.)_
 
-## Quando uma skill diz "buscar o ticket relevante"
+When set to `yes`, PRs run through the same labels and states as issues, using the `gh pr` equivalents:
 
-Rode `gh issue view <number> --comments`.
+- **Read a PR**: `gh pr view <number> --comments` and `gh pr diff <number>` for the diff.
+- **List external PRs for triage**: `gh pr list --state open --json number,title,body,labels,author,authorAssociation,comments` then keep only `authorAssociation` of `CONTRIBUTOR`, `FIRST_TIME_CONTRIBUTOR`, or `NONE` (drop `OWNER`/`MEMBER`/`COLLABORATOR`).
+- **Comment / label / close**: `gh pr comment`, `gh pr edit --add-label`/`--remove-label`, `gh pr close`.
+
+GitHub shares one number space across issues and PRs, so a bare `#42` may be either — resolve with `gh pr view 42` and fall back to `gh issue view 42`.
+
+## When a skill says "publish to the issue tracker"
+
+Create a GitHub issue.
+
+## When a skill says "fetch the relevant ticket"
+
+Run `gh issue view <number> --comments`.

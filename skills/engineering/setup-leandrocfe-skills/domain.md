@@ -5,10 +5,10 @@ Como as engineering skills devem consumir a documentação de domínio deste rep
 ## Antes de explorar, leia estes
 
 - **`CONTEXT.md`** na raiz do repo, ou
-- **`CONTEXT-MAP.md`** na raiz do repo se existir — aponta para um `CONTEXT.md` por contexto. Leia cada um relevante ao tópico.
-- **`docs/adr/`** — leia ADRs que tocam a área que você vai trabalhar. Em repos multi-context, cheque também `src/<context>/docs/adr/` para decisões com escopo de contexto.
+- **`CONTEXT-MAP.md`** na raiz do repo se existir — aponta para um `CONTEXT.md` por contexto. Leia cada um relevante para o tópico.
+- **`docs/adr/`** — leia ADRs que tocam na área em que você vai trabalhar. Em repos multi-context, verifique também `src/<context>/docs/adr/` para decisões scoped ao contexto.
 
-Se qualquer um destes arquivos não existir, **prossiga em silêncio**. Não sinalize a ausência; não sugira criar antecipadamente. A skill produtora (`/grill-with-docs`) cria com preguiça quando termos ou decisões de fato são resolvidos.
+Se qualquer um destes arquivos não existir, **prossiga silenciosamente**. Não flag a ausência; não sugira criar upfront. A skill `/domain-modeling` (alcançada via `/grill-with-docs` e `/improve-codebase-architecture`) cria eles de forma lazy quando termos ou decisões realmente se resolvem.
 
 ## Estrutura de arquivos
 
@@ -28,7 +28,7 @@ Repo multi-context (presença de `CONTEXT-MAP.md` na raiz):
 ```
 /
 ├── CONTEXT-MAP.md
-├── docs/adr/                          ← decisões de sistema todo
+├── docs/adr/                          ← decisões de sistema
 └── src/
     ├── ordering/
     │   ├── CONTEXT.md
@@ -40,12 +40,12 @@ Repo multi-context (presença de `CONTEXT-MAP.md` na raiz):
 
 ## Use o vocabulário do glossário
 
-Quando seu output nomeia um conceito de domínio (em título de issue, proposta de refactor, hipótese, nome de teste), use o termo como definido em `CONTEXT.md`. Não derive para sinônimos que o glossário explicitamente evita.
+Quando seu output nomear um conceito de domínio (em título de issue, proposta de refactor, hipótese, nome de teste), use o termo como definido em `CONTEXT.md`. Não desvie para sinônimos que o glossário explicitamente evita.
 
-Se o conceito que você precisa não está no glossário ainda, é um sinal — ou você está inventando linguagem que o projeto não usa (reconsidere) ou há um gap real (anote para `/grill-with-docs`).
+Se o conceito que você precisa não estiver no glossário ainda, isso é um sinal — ou você está inventando linguagem que o projeto não usa (reconsidere) ou há uma lacuna real (note para `/domain-modeling`).
 
-## Sinalize conflitos de ADR
+## Flag conflitos de ADR
 
-Se seu output contradiz um ADR existente, traga à tona explicitamente em vez de silenciosamente sobrepor:
+Se seu output contradizer um ADR existente, exponha explicitamente em vez de sobrescrever silenciosamente:
 
 > _Contradiz ADR-0007 (event-sourced orders) — mas vale reabrir porque…_

@@ -1,81 +1,66 @@
 ---
 name: improve-codebase-architecture
-description: "Encontra oportunidades de aprofundamento (deepening) numa codebase, informado pela linguagem de domínio em CONTEXT.md e pelas decisões em docs/adr/. Use quando o usuário quiser melhorar a arquitetura, achar oportunidades de refactoring, consolidar módulos fortemente acoplados, ou tornar a codebase mais testável e navegável por AI. Use when user wants to improve architecture, find refactoring opportunities, consolidate tightly-coupled modules, or make a codebase more testable and AI-navigable."
+description: Escaneia uma codebase em busca de oportunidades de deepening, apresenta como relatório HTML visual e depois sabatina a escolhida.
+disable-model-invocation: true
 ---
 
 # Improve Codebase Architecture
 
-Traga à tona fricção arquitetural e proponha **deepening opportunities** — refactors que transformam shallow modules em deep modules. O alvo é testability e AI-navigability.
+Traz à tona fricção arquitetural e propõe **oportunidades de deepening** — refactors que transformam módulos rasos (shallow) em profundos (deep). O objetivo é testabilidade e AI-navigability.
 
-## Glossário
+Esta skill é _informada_ pelo domain model do projeto e construída sobre um vocabulário de design compartilhado:
 
-Use estes termos exatamente em cada sugestão. Linguagem consistente é o ponto — não derive para "component", "service", "API" ou "boundary". Definições completas em [LANGUAGE.md](LANGUAGE.md).
-
-- **Module** — qualquer coisa com interface e implementação (função, classe, pacote, slice).
-- **Interface** — tudo que um caller precisa saber para usar o module: tipos, invariantes, error modes, ordering, config. Não só a type signature.
-- **Implementation** — o código por dentro.
-- **Depth** — leverage na interface: muito comportamento atrás de uma interface pequena. **Deep** = high leverage. **Shallow** = interface quase tão complexa quanto a implementação.
-- **Seam** — onde uma interface vive; um lugar onde comportamento pode ser alterado sem editar inline. (Use isto, não "boundary".)
-- **Adapter** — coisa concreta que satisfaz uma interface num seam.
-- **Leverage** — o que callers ganham de depth.
-- **Locality** — o que mantenedores ganham de depth: change, bugs, knowledge concentrados num lugar só.
-
-Princípios-chave (veja [LANGUAGE.md](LANGUAGE.md) para a lista completa):
-
-- **Deletion test**: imagine deletar o módulo. Se complexidade some, era pass-through. Se complexidade reaparece em N callers, estava ganhando o pão.
-- **A interface é a test surface.**
-- **One adapter = seam hipotético. Two adapters = seam real.**
-
-Esta skill é _informada_ pelo domain model do projeto. A linguagem de domínio dá nomes a bons seams; ADRs registram decisões que a skill não deve re-litigar.
+- Rode a skill `/codebase-design` para o vocabulário de arquitetura (**module**, **interface**, **depth**, **seam**, **adapter**, **leverage**, **locality**) e seus princípios (o deletion test, "a interface é a test surface", "um adapter = seam hipotético, dois = real"). Use estes termos exatamente em toda sugestão — não desvie para "component", "service", "API" ou "boundary".
+- A linguagem de domínio em `CONTEXT.md` dá nomes a bons seams; ADRs em `docs/adr/` registram decisões que esta skill não deve re-litigar.
 
 ## Processo
 
-### 1. Explorar
+### 1. Explore
 
-Leia o glossário de domínio do projeto e quaisquer ADRs na área que está tocando primeiro.
+Leia primeiro o glossário de domínio do projeto (`CONTEXT.md`) e quaisquer ADRs na área que você está tocando.
 
-Depois use a ferramenta Agent com `subagent_type=Explore` para caminhar pela codebase. Não siga heurísticas rígidas — explore organicamente e anote onde você experimenta fricção:
+Depois use a ferramenta Agent com `subagent_type=Explore` para caminhar pela codebase. Não siga heurísticas rígidas — explore de forma orgânica e note onde você sente fricção:
 
-- Onde entender um conceito exige saltar entre muitos módulos pequenos?
+- Onde entender um conceito exige pular entre muitos módulos pequenos?
 - Onde módulos estão **shallow** — interface quase tão complexa quanto a implementação?
-- Onde funções puras foram extraídas só para testability, mas os bugs reais se escondem em como são chamadas (sem **locality**)?
-- Onde módulos fortemente acoplados vazam por seus seams?
-- Que partes da codebase estão sem testes, ou difíceis de testar pela interface atual?
+- Onde funções puras foram extraídas só para testabilidade, mas os bugs reais se escondem em como são chamadas (sem **locality**)?
+- Onde módulos fortemente acoplados vazam através de seus seams?
+- Quais partes da codebase estão sem testes, ou difíceis de testar pela interface atual?
 
-Aplique o **deletion test** a qualquer coisa que você suspeita ser shallow: deletar concentraria complexidade ou só moveria? Um "sim, concentra" é o sinal que você quer.
+Aplique o **deletion test** em qualquer coisa que você suspeita ser shallow: deletar concentraria complexidade, ou só moveria? Um "sim, concentra" é o sinal que você quer.
 
-### 2. Apresentar candidatos como relatório HTML
+### 2. Apresente candidatos como relatório HTML
 
-Escreva um arquivo HTML self-contained no diretório temp do OS para que nada caia no repo. Resolva o temp dir a partir de `$TMPDIR`, com fallback para `/tmp` (ou `%TEMP%` no Windows), e escreva em `<tmpdir>/architecture-review-<timestamp>.html` para que cada execução tenha um arquivo novo. Abra para o usuário — `xdg-open <path>` no Linux, `open <path>` no macOS, `start <path>` no Windows — e informe o path absoluto.
+Escreva um arquivo HTML self-contained no diretório temp do sistema operacional para que nada caia no repo. Resolva o temp dir a partir de `$TMPDIR`, com fallback para `/tmp` (ou `%TEMP%` no Windows), e escreva em `<tmpdir>/architecture-review-<timestamp>.html` para que cada execução tenha um arquivo novo. Abra para o usuário — `xdg-open <path>` no Linux, `open <path>` no macOS, `start <path>` no Windows — e informe o caminho absoluto.
 
-O relatório usa **Tailwind via CDN** para layout e estilo, e **Mermaid via CDN** para diagramas onde um graph/flow/sequence comunica a estrutura de forma confiável. Misture Mermaid com visuais CSS/SVG artesanais — use Mermaid quando as relações têm forma de grafo (call graphs, dependências, sequences), e divs/SVG manuais quando quiser algo mais editorial (mass diagrams, cross-sections, collapse animations). Cada candidato ganha uma **visualização before/after**. Seja visual.
+O relatório usa **Tailwind via CDN** para layout e estilização, e **Mermaid via CDN** para diagramas onde um grafo/flow/sequência comunica a estrutura de forma confiável. Misture Mermaid com visuais CSS/SVG feitos à mão — use Mermaid quando relacionamentos têm forma de grafo (call graphs, dependências, sequências), e divs/SVG construídos à mão quando quiser algo mais editorial (mass diagrams, cross-sections, animações de collapse). Cada candidato recebe uma **visualização before/after**. Seja visual.
 
-Para cada candidato, o mesmo template de antes, mas renderizado como card:
+Para cada candidato, renderize um card com:
 
 - **Files** — quais arquivos/módulos estão envolvidos
 - **Problem** — por que a arquitetura atual está causando fricção
-- **Solution** — descrição em português simples do que mudaria
-- **Benefits** — explicado em termos de locality e leverage, e como os testes melhorariam
-- **Before / After diagram** — lado a lado, desenhado sob medida, ilustrando o shallowness e o deepening
+- **Solution** — descrição em linguagem simples do que mudaria
+- **Benefits** — explicados em termos de locality e leverage, e como os testes melhorariam
+- **Before / After diagram** — lado a lado, desenhado customizado, ilustrando a shallow e o deepening
 - **Recommendation strength** — um de `Strong`, `Worth exploring`, `Speculative`, renderizado como badge
 
 Encerre o relatório com uma seção **Top recommendation**: qual candidato você atacaria primeiro e por quê.
 
-**Use vocabulário do CONTEXT.md para o domínio, e vocabulário do [LANGUAGE.md](LANGUAGE.md) para arquitetura.** Se `CONTEXT.md` define "Order", fale sobre "o módulo de Order intake" — não sobre "o FooBarHandler", e não "o Order service".
+**Use vocabulário de CONTEXT.md para o domínio, e o vocabulário de `/codebase-design` para a arquitetura.** Se `CONTEXT.md` define "Order", fale sobre "o módulo de intake de Order" — não "o FooBarHandler", e não "o Order service".
 
-**Conflitos com ADR**: se um candidato contradiz um ADR existente, só traga à tona quando a fricção for real o suficiente para justificar revisitar o ADR. Marque claramente no card (ex.: callout em amber: _"contradiz ADR-0007 — mas vale reabrir porque…"_). Não liste todo refactor teórico que um ADR proíbe.
+**Conflitos de ADR**: se um candidato contradiz um ADR existente, só exponha quando a fricção for real o suficiente para justificar reabrir o ADR. Marque claramente no card (ex.: um callout de aviso: _"contradiz ADR-0007 — mas vale reabrir porque..."_). Não liste todo refactor teórico que um ADR proíbe.
 
-Veja [HTML-REPORT.md](HTML-REPORT.md) para o scaffold HTML completo, padrões de diagrama e guia de estilo.
+Veja [HTML-REPORT.md](HTML-REPORT.md) para o scaffold completo de HTML, padrões de diagrama e guia de estilo.
 
-NÃO proponha interfaces ainda. Após escrever o arquivo, pergunte ao usuário: "Qual destes você quer explorar?"
+NÃO proponha interfaces ainda. Depois que o arquivo for escrito, pergunte ao usuário: "Qual destes você gostaria de explorar?"
 
 ### 3. Loop de sabatina
 
-Quando o usuário escolher um candidato, entre numa conversa de sabatina. Caminhe pela design tree com ele — constraints, dependências, o shape do módulo aprofundado, o que fica atrás do seam, que testes sobrevivem.
+Uma vez que o usuário escolher um candidato, rode a skill `/grilling` para caminhar a design tree com ele — constraints, dependências, o shape do módulo aprofundado, o que fica atrás do seam, quais testes sobrevivem.
 
-Efeitos colaterais acontecem inline conforme as decisões cristalizam:
+Efeitos colaterais acontecem inline conforme decisões cristalizam — rode a skill `/domain-modeling` para manter o domain model atualizado conforme avança:
 
-- **Nomeando um módulo aprofundado com um conceito que não está em `CONTEXT.md`?** Adicione o termo ao `CONTEXT.md` — mesma disciplina do `/grill-with-docs` (veja [CONTEXT-FORMAT.md](../grill-with-docs/CONTEXT-FORMAT.md)). Crie o arquivo com preguiça se não existir.
-- **Refinando um termo fuzzy durante a conversa?** Atualize `CONTEXT.md` ali mesmo.
-- **Usuário rejeita o candidato com uma razão load-bearing?** Ofereça um ADR, enquadrado como: _"Quer que eu registre isso como ADR para futuras revisões de arquitetura não re-sugerirem?"_ Só ofereça quando a razão de fato seria necessária a um futuro explorador para evitar re-sugerir a mesma coisa — pule razões efêmeras ("não vale a pena agora") e auto-evidentes. Veja [ADR-FORMAT.md](../grill-with-docs/ADR-FORMAT.md).
-- **Quer explorar interfaces alternativas para o módulo aprofundado?** Veja [INTERFACE-DESIGN.md](INTERFACE-DESIGN.md).
+- **Nomeando um módulo aprofundado com um conceito que não está em `CONTEXT.md`?** Adicione o termo ao `CONTEXT.md`. Crie o arquivo de forma lazy se não existir.
+- **Afinando um termo vago durante a conversa?** Atualize `CONTEXT.md` ali mesmo.
+- **Usuário rejeita o candidato com uma razão importante?** Ofereça um ADR, enquadrado como: _"Quer que eu registre isso como ADR para que futuras revisões de arquitetura não o re-sugiram?"_ Só ofereça quando a razão realmente seria necessária para um explorador futuro evitar re-sugerir a mesma coisa — pule razões efêmeras ("não vale a pena agora") e óbvias.
+- **Quer explorar interfaces alternativas para o módulo aprofundado?** Rode a skill `/codebase-design` e use o padrão de sub-agents paralelos design-it-twice dela.

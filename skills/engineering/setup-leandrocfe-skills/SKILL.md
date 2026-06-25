@@ -1,22 +1,22 @@
 ---
 name: setup-leandrocfe-skills
-description: "Configura um bloco `## Agent skills` em AGENTS.md/CLAUDE.md e `docs/agents/` para que as engineering skills conheçam o issue tracker deste repo (GitHub ou markdown local), o vocabulário de triage labels e o layout dos docs de domínio. Rode antes do primeiro uso de `to-issues`, `to-prd`, `triage`, `diagnose`, `tdd`, `improve-codebase-architecture` ou `zoom-out` — ou se essas skills parecerem sem contexto sobre issue tracker, triage labels ou docs de domínio."
+description: Configura este repo para as engineering skills — configura seu issue tracker, vocabulário de triage labels e layout de docs de domínio. Rode uma vez antes do primeiro uso das outras engineering skills.
 disable-model-invocation: true
 ---
 
 # Setup leandrocfe Skills
 
-Scaffold da configuração por-repo que as engineering skills assumem:
+Faz o scaffold da configuração por-repo que as engineering skills assumem:
 
-- **Issue tracker** — onde issues vivem (GitHub por default; markdown local também suportado out of the box)
-- **Triage labels** — as strings usadas para as cinco triage roles canônicas
-- **Domain docs** — onde `CONTEXT.md` e ADRs vivem, e as regras de consumidor para lê-los
+- **Issue tracker** — onde issues vivem (GitHub por default; markdown local também é suportado out of the box)
+- **Triage labels** — as strings usadas para as cinco roles canônicas de triage
+- **Domain docs** — onde `CONTEXT.md` e ADRs vivem, e as regras de consumo para lê-los
 
 Esta é uma skill prompt-driven, não um script determinístico. Explore, apresente o que achou, confirme com o usuário, depois escreva.
 
 ## Processo
 
-### 1. Explorar
+### 1. Explore
 
 Olhe o repo atual para entender o estado inicial. Leia o que existe; não assuma:
 
@@ -35,7 +35,7 @@ Assuma que o usuário não sabe o que esses termos significam. Cada seção come
 
 **Seção A — Issue tracker.**
 
-> Explainer: O "issue tracker" é onde issues vivem para este repo. Skills como `to-issues`, `triage`, `to-prd` e `qa` leem e escrevem nele — precisam saber se chamam `gh issue create`, escrevem um markdown sob `.scratch/` ou seguem algum outro workflow que você descreve. Escolha o lugar onde você de fato rastreia trabalho deste repo.
+> Explainer: O "issue tracker" é onde issues vivem para este repo. Skills como `to-issues`, `triage`, `to-prd` leem e escrevem nele — precisam saber se chamam `gh issue create`, escrevem um markdown sob `.scratch/` ou seguem algum outro workflow que você descreve. Escolha o lugar onde você de fato rastreia trabalho deste repo.
 
 Postura default: estas skills foram desenhadas para GitHub. Se um `git remote` aponta para GitHub, proponha. Se um `git remote` aponta para GitLab (`gitlab.com` ou host self-hosted), proponha GitLab. Senão (ou se o usuário preferir), ofereça:
 
@@ -44,9 +44,15 @@ Postura default: estas skills foram desenhadas para GitHub. Se um `git remote` a
 - **Markdown local** — issues vivem como arquivos sob `.scratch/<feature>/` neste repo (bom para projetos solo ou repos sem remote)
 - **Other** (Jira, Linear, etc.) — peça ao usuário para descrever o workflow num parágrafo; a skill registra como prosa freeform
 
+Se — e somente se — o usuário escolheu **GitHub** ou **GitLab**, faça uma pergunta de follow-up:
+
+> Explainer: Repos open-source frequentemente recebem feature requests como pull requests, não só issues — um PR é um issue com código anexado. Se você ligar isso, `/triage` puxa PRs *externos* para a mesma fila e roda pelos mesmos labels e estados que issues (PRs em voo de colaboradores são deixados em paz). Deixe desligado se PRs não forem uma superfície de request para você.
+
+- **PRs como superfície de request** — sim / não (default: não). Registre a resposta em `docs/agents/issue-tracker.md`. Para local-markdown e outros trackers, pule esta pergunta — não há PRs.
+
 **Seção B — Vocabulário de triage labels.**
 
-> Explainer: Quando a skill `triage` processa uma issue recebida, ela a move por uma máquina-de-estado — precisa de avaliação, esperando reporter, pronta para AFK agent pegar, pronta para humano, ou wontfix. Para isso, precisa aplicar labels (ou equivalente no seu issue tracker) que batem com strings *que você de fato configurou*. Se seu repo já usa nomes diferentes de label (ex.: `bug:triage` em vez de `needs-triage`), mapeie aqui para a skill aplicar as certas em vez de criar duplicatas.
+> Explainer: Quando a skill `triage` processa uma issue recebida, ela a move por uma máquina-de-estado — precisa de avaliação, esperando reporter, pronta para AFK agent pegar, pronta para humano, ou wontfix. Para isso, precisa aplicar labels (ou equivalente no seu issue tracker) que batam com strings *que você de fato configurou*. Se seu repo já usa nomes diferentes de label (ex.: `bug:triage` em vez de `needs-triage`), mapeie aqui para a skill aplicar as certas em vez de criar duplicatas.
 
 As cinco roles canônicas:
 
@@ -60,7 +66,7 @@ Default: a string de cada role é igual ao nome. Pergunte ao usuário se quer so
 
 **Seção C — Docs de domínio.**
 
-> Explainer: Algumas skills (`improve-codebase-architecture`, `diagnose`, `tdd`) leem um arquivo `CONTEXT.md` para aprender a linguagem de domínio do projeto, e `docs/adr/` para decisões arquiteturais passadas. Precisam saber se o repo tem um contexto global único ou múltiplos (ex.: um monorepo com contextos separados frontend/backend) para procurar no lugar certo.
+> Explainer: Algumas skills (`improve-codebase-architecture`, `diagnosing-bugs`, `tdd`) leem um arquivo `CONTEXT.md` para aprender a linguagem de domínio do projeto, e `docs/adr/` para decisões arquiteturais passadas. Precisam saber se o repo tem um contexto global único ou múltiplos (ex.: um monorepo com contextos separados frontend/backend) para procurar no lugar certo.
 
 Confirme o layout:
 
@@ -95,7 +101,7 @@ O bloco:
 
 ### Issue tracker
 
-[resumo de uma linha de onde issues são rastreadas]. Veja `docs/agents/issue-tracker.md`.
+[resumo de uma linha de onde issues são rastreadas, mais se PRs externos são uma superfície de triage]. Veja `docs/agents/issue-tracker.md`.
 
 ### Triage labels
 
