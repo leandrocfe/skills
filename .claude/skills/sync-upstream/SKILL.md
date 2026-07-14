@@ -21,26 +21,41 @@ O upstream é versionado com releases semver e mantém um `CHANGELOG.md` explica
 
 O remote `upstream` aponta para o repo do Matt. Se não existir: `git remote add upstream https://github.com/mattpocock/skills.git`.
 
+### Namespace de tags
+
+As tags do upstream vivem sob `upstream/*` (ex.: `upstream/v1.1.0`); o namespace `vX.Y.Z` limpo pertence às **releases deste repo**. Isso é o que permite tagear um sync sem colidir com a tag homônima do Matt.
+
+O remote já está configurado para isso. Se um clone novo não estiver:
+
+```bash
+git config remote.upstream.tagOpt --no-tags
+git config --add remote.upstream.fetch "+refs/tags/*:refs/tags/upstream/*"
+```
+
+**Nunca** rode `git fetch upstream --tags` — isso despeja as tags do Matt no namespace limpo e reintroduz a colisão.
+
 ## Processo
 
 ### 1. Descobrir o delta
 
 ```bash
-git fetch upstream --tags
+git fetch upstream
 ```
 
-- `BASE` = valor de `upstream-version:` em `UPSTREAM.md`.
-- `ALVO` = tag mais recente do upstream.
+- `BASE` = valor de `upstream-version:` em `UPSTREAM.md` (ex.: `v1.1.0`), lido como `upstream/$BASE`.
+- `ALVO` = tag mais recente do upstream: `git tag -l 'upstream/v*' | sort -V | tail -1`.
 - `BASE == ALVO` → nada a fazer, encerre.
 
 ### 2. Entender as mudanças — CHANGELOG primeiro, diff depois
 
-1. Leia as seções do `CHANGELOG.md` do upstream entre `BASE` e `ALVO` (`git show ALVO:CHANGELOG.md`). Ele explica o que mudou **e por quê** — use como esqueleto do relatório, não reconstrua do zero.
+1. Leia as seções do `CHANGELOG.md` do upstream entre `BASE` e `ALVO` (`git show upstream/$ALVO:CHANGELOG.md`). Ele explica o que mudou **e por quê** — use como esqueleto do relatório, não reconstrua do zero.
 2. Gere o diff real, com detecção de renames:
 
    ```bash
-   git diff -M BASE..ALVO -- skills/ docs/ .claude-plugin/plugin.json
+   git diff -M upstream/$BASE..upstream/$ALVO -- skills/ .claude-plugin/plugin.json
    ```
+
+   `docs/` fica fora de propósito — veja as divergências deliberadas no `UPSTREAM.md`.
 
 3. Cruze o diff com o mapeamento de nomes do `UPSTREAM.md` (ex.: mudanças em `setup-matt-pocock-skills` aplicam-se a `setup-leandrocfe-skills`).
 
@@ -59,16 +74,18 @@ Apresente ao mantenedor:
 
 - Adapte skill por skill; nunca copie e cole.
 - Espelhe renames do upstream com `git mv`, exceto os listados no mapeamento do `UPSTREAM.md`.
-- Atualize `.claude-plugin/plugin.json`: a lista de skills deve bater com os diretórios reais e o campo `version` deve espelhar a tag sincronizada.
-- Valide ao final: cada entrada do plugin.json existe em `skills/`; cada skill promovida tem entrada; READMEs de bucket e top-level atualizados conforme o `CLAUDE.md`.
+- Atualize `.claude-plugin/plugin.json`: a lista de skills deve bater com os diretórios reais e o campo `version` deve espelhar a tag sincronizada. **O hook "ARS scope guard" impede agents de escrever esse arquivo** — entregue o conteúdo ao mantenedor para ele salvar à mão, ou peça que desligue o hook.
+- Verifique as skills exclusivas deste repo (`personal/`) que encadeiam skills do upstream: um rename quebra as referências delas silenciosamente.
+- Valide ao final: cada entrada do plugin.json existe em `skills/`; nenhum `name:` de frontmatter diverge do diretório; nenhuma referência a nome de skill morto sobrou (`grep` pelos nomes antigos); READMEs de bucket e top-level atualizados conforme o `CLAUDE.md`.
 
 ### 5. Fechar o sync
 
 1. Atualize `upstream-version:` no `UPSTREAM.md` para `ALVO` e limpe pendências resolvidas.
 2. Commit: `sync: upstream ALVO`.
-3. Tag espelhando o upstream: `git tag ALVO && git push origin ALVO`.
-4. Feche a issue de sync aberta pelo workflow, se houver.
-5. Opcional: traduza a seção do CHANGELOG do release e publique como release notes deste repo.
+3. Tag da release deste repo, espelhando a versão do upstream: `git tag -a $ALVO -m "sync: upstream $ALVO"`. O namespace limpo está livre porque as tags do Matt vivem em `upstream/*`.
+4. Confirme o push com o mantenedor antes de rodar `git push origin $ALVO`.
+5. Feche a issue de sync aberta pelo workflow, se houver.
+6. Opcional: traduza a seção do CHANGELOG do release e publique como release notes deste repo.
 
 ## Regras de adaptação
 
