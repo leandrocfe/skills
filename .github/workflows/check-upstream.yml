@@ -1,0 +1,72 @@
+name: Check upstream releases
+
+on:
+  schedule:
+    # Diariamente às 09:00 UTC (06:00 BRT)
+    - cron: "0 9 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Compare upstream release with synced version
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+
+          latest=$(gh api repos/mattpocock/skills/releases/latest --jq .tag_name)
+          synced=$(sed -n 's/^upstream-version: //p' UPSTREAM.md | head -1)
+
+          echo "Upstream: $latest | Sincronizado: $synced"
+
+          if [ -z "$synced" ]; then
+            echo "::error::Não encontrei 'upstream-version:' em UPSTREAM.md"
+            exit 1
+          fi
+
+          # Sanidade: tags devem ser semver simples; evita conteúdo
+          # inesperado da API em título/busca de issue.
+          for v in "$latest" "$synced"; do
+            if ! printf '%s' "$v" | grep -Eq '^v[0-9]+\.[0-9]+\.[0-9]+$'; then
+              echo "::error::Tag fora do padrão semver: $v"
+              exit 1
+            fi
+          done
+
+          if [ "$latest" = "$synced" ]; then
+            echo "Em paridade. Nada a fazer."
+            exit 0
+          fi
+
+          title="Sync upstream $latest (atual: $synced)"
+
+          existing=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open \
+            --search "in:title \"$title\"" --json number --jq 'length')
+          if [ "$existing" != "0" ]; then
+            echo "Issue já aberta para $latest."
+            exit 0
+          fi
+
+          # Release notes do upstream são conteúdo de terceiros: gravar em
+          # arquivo e passar via --body-file, sem interpolação em comandos.
+          {
+            printf 'Novo release no upstream: [`%s`](https://github.com/mattpocock/skills/releases/tag/%s)\n\n' "$latest" "$latest"
+            printf 'Última versão sincronizada: `%s` (ver `UPSTREAM.md`).\n\n' "$synced"
+            printf '## Release notes do upstream\n\n'
+            gh api repos/mattpocock/skills/releases/latest --jq .body
+            printf '\n\n---\n'
+            printf 'Processo de sync: rodar `/sync-upstream` em uma sessão do Claude Code na raiz deste repo.\n'
+            printf 'Issue criada automaticamente pelo workflow `check-upstream.yml`.\n'
+          } > /tmp/issue-body.md
+
+          gh issue create --repo "$GITHUB_REPOSITORY" \
+            --title "$title" \
+            --body-file /tmp/issue-body.md
