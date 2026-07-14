@@ -1,7 +1,6 @@
 ---
 name: prototype
-description: Build a throwaway prototype to flesh out a design — a runnable terminal app for state/business-logic questions, or several radically different UI variations toggleable from one route.
-disable-model-invocation: true
+description: Constrói um prototype descartável para responder a uma pergunta de design. Use quando o usuário quiser checar se um modelo de estado ou uma lógica faz sentido, ou explorar como uma UI deveria ser.
 ---
 
 # Prototype

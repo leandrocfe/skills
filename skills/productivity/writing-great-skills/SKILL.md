@@ -57,3 +57,27 @@ Mantenha cada significado em uma **single source of truth**: um lugar autoritati
 Cheque cada linha por **relevance**: ela ainda impacta o que a skill faz?
 
 Depois cace **no-ops** frase por frase, não só linha por linha: rode o no-op test em cada frase isoladamente, e quando uma falhar, delete a frase inteira em vez de aparar palavras dela. Seja agressivo — a maioria da prosa que falha deve ir, não ser reescrita.
+
+## Leading words
+
+Uma **leading word** é um conceito compacto que já vive no pretraining do modelo e com o qual o agent pensa enquanto roda a skill (ex.: _lesson_, _fog of war_, _tracer bullets_). Repetida ao longo do texto (embora não necessariamente — uma leading word forte pode bastar uma vez só), ela acumula uma definição distribuída e ancora uma região inteira de comportamento no menor número de tokens, recrutando priors que o modelo já tem.
+
+Ela serve à predictability duas vezes. No corpo, ancora a _execution_: o agent alcança o mesmo comportamento toda vez que a palavra aparece. Na description, ancora a _invocation_: quando a mesma palavra vive nos seus prompts, docs e código, o agent liga essa linguagem compartilhada à skill e a dispara com mais confiabilidade.
+
+Cace oportunidades de refatorar skills para usar leading words. Uma tríade soletrada em três lugares (**duplication**), uma description gastando uma frase para gesticular na direção de uma ideia — cada uma é uma passagem implorando para **colapsar** em um único token. Exemplos:
+
+- "rápido, determinístico, baixo overhead" -> _tight_ — uma qualidade reenunciada ao longo de uma fase — numa única palavra pré-treinada (um loop _tight_).
+- "um loop no qual você acredita" -> _red_ — converte um gate difuso num estado binário observável (o loop fica _red_ no bug, ou não fica).
+
+Você ganha duas vezes: menos tokens, _e_ um gancho mais afiado para o agent pendurar o raciocínio. Assuma que toda skill carrega reenunciações que leading words aposentam — vá achá-las.
+
+## Failure modes
+
+Use estes para diagnosticar problemas que o usuário possa estar tendo com a skill.
+
+- **Premature completion** — encerrar um step antes de estar genuinamente feito, com a atenção escorregando para _estar pronto_. Defesa, nesta ordem: afie primeiro o completion criterion (barato, local); só se ele for irredutivelmente difuso _e_ você observar a pressa, esconda os post-completion steps dividindo a sequência (o corte por sequência).
+- **Duplication** — o mesmo significado em mais de um lugar. Custa manutenção e tokens, e infla a proeminência de um significado na escada acima do seu rank real.
+- **Sediment** — camadas obsoletas que se depositam porque adicionar parece seguro e remover parece arriscado. O destino default de qualquer skill sem disciplina de pruning.
+- **Sprawl** — uma skill simplesmente longa demais, mesmo quando cada linha está viva e é única. Prejudica legibilidade e manutenibilidade, e desperdiça tokens. A cura é a escada: divulgue **reference** atrás de pointers, e divida por **branch** ou sequência para que cada caminho carregue só o que precisa.
+- **No-op** — uma linha que o modelo já obedece por default, então você paga load para não dizer nada. O teste: ela muda o comportamento em relação ao default? Uma leading word fraca (_seja thorough_ quando o agent já é meio thorough) é um no-op; a correção é uma palavra mais forte (_relentless_), não uma técnica diferente.
+- **Negation** — dirigir por proibição sai pela culatra: _não pense num elefante_ nomeia o elefante e o torna mais disponível, não menos. Prompt o **positivo** — enuncie o comportamento alvo, para que o proibido nunca seja falado; guarde uma proibição só como guardrail duro que você não consegue formular positivamente, e mesmo aí emparelhe-a com o que fazer em vez disso.

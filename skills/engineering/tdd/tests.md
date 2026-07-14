@@ -59,3 +59,19 @@ test("createUser makes user retrievable", async () => {
   expect(retrieved.name).toBe("Alice");
 });
 ```
+
+**Testes tautológicos**: O valor esperado reenuncia a implementação, então o teste passa por construção.
+
+```typescript
+// RUIM: O valor esperado é recalculado do mesmo jeito que o código calcula
+test("calculateTotal sums line items", () => {
+  const items = [{ price: 10 }, { price: 5 }];
+  const expected = items.reduce((sum, i) => sum + i.price, 0);
+  expect(calculateTotal(items)).toBe(expected);
+});
+
+// BOM: O valor esperado é um literal independente e conhecido
+test("calculateTotal sums line items", () => {
+  expect(calculateTotal([{ price: 10 }, { price: 5 }])).toBe(15);
+});
+```

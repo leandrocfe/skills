@@ -35,7 +35,7 @@ Assuma que o usuário não sabe o que esses termos significam. Cada seção come
 
 **Seção A — Issue tracker.**
 
-> Explainer: O "issue tracker" é onde issues vivem para este repo. Skills como `to-issues`, `triage`, `to-prd` leem e escrevem nele — precisam saber se chamam `gh issue create`, escrevem um markdown sob `.scratch/` ou seguem algum outro workflow que você descreve. Escolha o lugar onde você de fato rastreia trabalho deste repo.
+> Explainer: O "issue tracker" é onde issues vivem para este repo. Skills como `to-tickets`, `triage`, `to-spec` e `wayfinder` leem e escrevem nele — precisam saber se chamam `gh issue create`, escrevem um markdown sob `.scratch/` ou seguem algum outro workflow que você descreve. Escolha o lugar onde você de fato rastreia trabalho deste repo.
 
 Postura default: estas skills foram desenhadas para GitHub. Se um `git remote` aponta para GitHub, proponha. Se um `git remote` aponta para GitLab (`gitlab.com` ou host self-hosted), proponha GitLab. Senão (ou se o usuário preferir), ofereça:
 
