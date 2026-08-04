@@ -30,6 +30,7 @@ Renames já espelhados: `to-prd`→`to-spec`, `to-issues`→`to-tickets` (v1.1.0
 Nunca remover em sync — não têm correspondente para comparar:
 
 - `personal/dev-pipeline`
+- `personal/bro` — adaptação pt-BR de [dmmulroy/skills](https://github.com/dmmulroy/skills/blob/main/bro/SKILL.md), não do upstream do Matt
 
 > Correção (v1.1.0): `in-progress/decision-mapping` estava listada aqui por engano.
 > Ela **vinha do upstream** e foi renomeada para `engineering/wayfinder` na v1.1.0.
