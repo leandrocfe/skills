@@ -1,0 +1,5 @@
+interface:
+  display_name: "To Tickets"
+  short_description: "Divide um plano em tickets tracer-bullet"
+policy:
+  allow_implicit_invocation: false

@@ -23,6 +23,8 @@ Um **seam** é a fronteira pública na qual você testa: a interface onde você 
 
 Pergunte: "Qual é a interface pública, e quais seams devemos testar?"
 
+Quando o próprio formato dessa interface está em questão — quão profundo é o módulo, onde o seam fica, o que a interface deve expor — use a skill `/codebase-design` para o vocabulário. Ela é a fonte compartilhada dos termos módulo, interface, profundidade, seam, adapter, leverage e locality, e é uma referência para consultar, não uma sessão para rodar.
+
 ## Anti-patterns
 
 - **Acoplado à implementação** — mocka colaboradores internos, testa métodos privados, ou verifica por um canal lateral (fazendo query no database em vez de usar a interface). O sinal: o teste quebra quando você refatora, mas o comportamento não mudou.

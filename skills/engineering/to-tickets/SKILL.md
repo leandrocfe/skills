@@ -1,6 +1,6 @@
 ---
 name: to-tickets
-description: Quebra um plano, spec ou a conversa atual em um conjunto de tickets tracer-bullet, cada um declarando suas blocking edges, publicados no tracker configurado — edges como texto num arquivo local, ou links de blocking nativos num tracker de verdade.
+description: Quebra um plano, spec ou a conversa atual em um conjunto de tickets tracer-bullet, cada um declarando suas blocking edges, publicados no tracker configurado — edges como texto em um arquivo por ticket localmente, ou links de blocking nativos num tracker de verdade.
 disable-model-invocation: true
 ---
 
@@ -59,33 +59,27 @@ Itere até o usuário aprovar a quebra.
 
 Publique os tickets aprovados. **Como** depende do tracker que o `/setup-leandrocfe-skills` configurou — os tickets são os mesmos nos dois casos, só muda a forma das blocking edges:
 
-- **Arquivos locais** → escreva um `tickets.md` na raiz do repo, todos os tickets em ordem de dependência (blockers primeiro), cada um com seu "Blocked by" listando os títulos dos quais depende. Use o template de arquivo abaixo.
+- **Arquivos locais** → escreva um arquivo por ticket sob `.scratch/<feature-slug>/issues/<NN>-<slug>.md`, numerados a partir de `01` em ordem de dependência (blockers primeiro). O "Blocked by" de cada arquivo lista os números/títulos dos quais depende. Use o template de arquivo por ticket abaixo — um ticket por arquivo, nunca um único arquivo combinado.
 - **Um issue tracker de verdade (GitHub, Linear, …)** → publique uma issue por ticket em ordem de dependência (blockers primeiro), para que as blocking edges de cada ticket possam referenciar identificadores reais. Use a relação nativa de blocking / sub-issue da plataforma onde ela existir; caso contrário, preencha o "Blocked by" de cada ticket com as issues bloqueadoras. Aplique a triage label `ready-for-agent` salvo instrução em contrário — os tickets são pegáveis por agent por construção.
-
-NÃO feche nem modifique nenhuma issue pai.
-
-<tickets-file-template>
-
-# Tickets: <nome curto do trabalho>
-
-Um resumo de uma linha do que estes tickets constroem. Referencie a spec de origem, se houver.
 
 Trabalhe a **frontier**: qualquer ticket cujos blockers estejam todos concluídos. Numa cadeia puramente linear, isso significa de cima para baixo.
 
-## <Título do ticket>
+NÃO feche nem modifique nenhuma issue pai.
+
+<local-ticket-template>
+
+# <NN> — <Título do ticket>
 
 **What to build:** o comportamento ponta a ponta que este ticket faz funcionar, da perspectiva do usuário — não uma lista de implementação camada por camada.
 
-**Blocked by:** os títulos dos tickets que travam este, ou "Nenhum — pode começar imediatamente".
+**Blocked by:** os números/títulos dos tickets que travam este, ou "Nenhum — pode começar imediatamente".
+
+**Status:** ready-for-agent
 
 - [ ] Critério de aceite 1
 - [ ] Critério de aceite 2
 
-## <Título do ticket>
-
-...
-
-</tickets-file-template>
+</local-ticket-template>
 
 <issue-template>
 
@@ -109,5 +103,3 @@ O comportamento ponta a ponta que este ticket faz funcionar, da perspectiva do u
 </issue-template>
 
 Em qualquer das formas, evite caminhos de arquivo específicos ou trechos de código — eles ficam obsoletos rápido. Exceção: se um prototype produziu um trecho que codifica uma decisão com mais precisão do que a prosa consegue (state machine, reducer, schema, formato de tipo), inclua-o e anote brevemente que veio de um prototype. Corte para as partes ricas em decisão — não é um demo funcional, só o que importa.
-
-Trabalhe a frontier um ticket por vez com `/implement`, limpando o contexto entre tickets.

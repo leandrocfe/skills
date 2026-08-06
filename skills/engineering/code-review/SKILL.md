@@ -6,7 +6,7 @@ description: Revisa as mudanças desde um ponto fixo (commit, branch, tag ou mer
 Revisão em dois eixos do diff entre `HEAD` e um ponto fixo fornecido pelo usuário:
 
 - **Standards** — o código está de acordo com os padrões de codificação documentados deste repo?
-- **Spec** — o código implementa fielmente a issue / spec / PRD de origem?
+- **Spec** — o código implementa fielmente a issue / spec de origem?
 
 Os dois eixos rodam como **sub-agents paralelos**, para que não poluam o contexto um do outro, e então esta skill agrega os achados.
 
@@ -28,7 +28,7 @@ Procure a spec de origem, nesta ordem:
 
 1. Referências a issues nas mensagens de commit (`#123`, `Closes #45`, `!67` no GitLab, etc.) — busque via o workflow em `docs/agents/issue-tracker.md`.
 2. Um caminho que o usuário passou como argumento.
-3. Um arquivo de spec/PRD sob `docs/`, `specs/` ou `.scratch/` que bata com o nome do branch ou da feature.
+3. Um arquivo de spec sob `docs/`, `specs/` ou `.scratch/` que bata com o nome do branch ou da feature.
 4. Se nada for encontrado, pergunte ao usuário onde está a spec. Se ele disser que não existe, o sub-agent de **Spec** é pulado e reporta "nenhuma spec disponível".
 
 ### 3. Identifique as fontes de standards

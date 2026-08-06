@@ -1,0 +1,3 @@
+interface:
+  display_name: "Wizard"
+  short_description: "Gera um wizard de setup interativo"

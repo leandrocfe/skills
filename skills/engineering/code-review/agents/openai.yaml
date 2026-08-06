@@ -1,0 +1,3 @@
+interface:
+  display_name: "Code Review"
+  short_description: "Revisa um diff em standards e spec"

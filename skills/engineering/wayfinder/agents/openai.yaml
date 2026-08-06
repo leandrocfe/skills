@@ -1,0 +1,5 @@
+interface:
+  display_name: "Wayfinder"
+  short_description: "Mapeia um esforço grande como decision tickets"
+policy:
+  allow_implicit_invocation: false

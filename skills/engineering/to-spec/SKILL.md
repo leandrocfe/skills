@@ -4,7 +4,7 @@ description: Transforma a conversa atual em uma spec e publica no issue tracker 
 disable-model-invocation: true
 ---
 
-Esta skill pega o contexto atual da conversa e o entendimento da codebase e produz uma spec (você talvez conheça este documento como PRD). NÃO entreviste o usuário — apenas sintetize o que já sabe.
+Esta skill pega o contexto atual da conversa e o entendimento da codebase e produz uma spec. NÃO entreviste o usuário — apenas sintetize o que já sabe.
 
 O issue tracker e o vocabulário de triage labels devem ter sido fornecidos a você — rode `/setup-leandrocfe-skills` se não.
 

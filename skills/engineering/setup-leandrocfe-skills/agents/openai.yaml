@@ -1,0 +1,5 @@
+interface:
+  display_name: "Setup leandrocfe Skills"
+  short_description: "Configura um repo para as skills"
+policy:
+  allow_implicit_invocation: false

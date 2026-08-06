@@ -1,12 +1,12 @@
 # Estado de sincronização com o upstream
 
-upstream-version: v1.1.0
+upstream-version: v1.2.0
 
 > A linha `upstream-version:` acima é lida por automação (GitHub Action).
 > Atualize-a **somente** ao concluir um sync completo, e mantenha o formato exato.
 
 - **Upstream**: https://github.com/mattpocock/skills (remote `upstream`)
-- **Baseline atual**: `v1.1.0` — último sync completo em 2026-07-14
+- **Baseline atual**: `v1.2.0` — último sync completo em 2026-08-05
 - **Como sincronizar**: skill de projeto `/sync-upstream` (`.claude/skills/sync-upstream/`), processo tag-a-tag
 
 ## Mapeamento de nomes (upstream → este repo)
@@ -32,11 +32,10 @@ Nunca remover em sync — não têm correspondente para comparar:
 - `personal/dev-pipeline`
 - `personal/bro` — adaptação pt-BR de [dmmulroy/skills](https://github.com/dmmulroy/skills/blob/main/bro/SKILL.md), não do upstream do Matt
 
-> Correção (v1.1.0): `in-progress/decision-mapping` estava listada aqui por engano.
-> Ela **vinha do upstream** e foi renomeada para `engineering/wayfinder` na v1.1.0.
-> `personal/edit-article` e `personal/obsidian-vault` também existem no upstream —
-> não são exclusivas. Antes de marcar algo como exclusivo, confirme com
-> `git ls-tree <tag> skills/`.
+> Nota (v1.2.0): `personal/edit-article` e `personal/obsidian-vault` **foram
+> removidas do upstream** na v1.2.0 (o Matt deletou o bucket `personal/` dele) e
+> foram espelhadas aqui — nunca foram exclusivas. Antes de marcar algo como
+> exclusivo, confirme com `git ls-tree <tag> skills/`.
 
 ## Divergências deliberadas do upstream
 
@@ -46,25 +45,40 @@ Decisões permanentes deste projeto — não reabrir a cada sync:
   `docs/productivity/`. Aqui, a superfície de documentação é o `README.md`
   top-level mais os READMEs de bucket. Mudanças em `docs/` no upstream são
   ignoradas; o conteúdo relevante é absorvido nos READMEs.
-- **`implement` e `resolving-merge-conflicts` listadas nos READMEs.** O upstream
-  as omite dos READMEs (aparente descuido). Aqui elas são listadas, porque o
-  `CLAUDE.md` exige que toda skill de `engineering/` tenha entrada no README
-  top-level.
+- **`implement` listada nos READMEs.** O upstream a omitia dos READMEs até a
+  v1.2.0 (quando passou a listá-la); aqui já era listada, porque o `CLAUDE.md`
+  exige que toda skill de `engineering/` tenha entrada no README top-level.
+- **`writing-for-agents` agrupada em Model-invoked.** O upstream v1.2.0 é
+  internamente inconsistente: o changelog e o frontmatter da `SKILL.md` dizem
+  **model-invoked**, mas o `agents/openai.yaml` traz `allow_implicit_invocation:
+  false` e os READMEs a listam em User-invoked. Resolvemos para **model-invoked**
+  de forma consistente (SKILL.md sem `disable-model-invocation`, sem bloco
+  `policy` no openai.yaml, listada em Model-invoked) — condiz com a convenção
+  deste repo de agrupar por frontmatter. `display_name` corrigido de "Writing
+  Great Skills" (stale no upstream) para "Writing For Agents".
+- **`.agents/` parcial.** Do upstream v1.2.0 importamos apenas
+  `.agents/invocation.md` (adaptado). Os ADRs meta do Matt (`0001`, `0002`),
+  `install-block.md` e `writing-docs.md` são específicos do repo dele e ficam de
+  fora — mesma lógica da divergência de `docs/`.
+- **Seção de instalação do README não reformulada.** O upstream v1.2.0 trocou o
+  "Quickstart" por uma seção "Installation" com plugin de marketplace vs
+  skills.sh, referências ao marketplace `mattpocock-skills` e ao ADR `0002`. Aqui
+  a seção de install permanece a adaptada (`npx skills@latest add leandrocfe/skills`).
+
+## Codex / dual-harness
+
+Desde a v1.2.0, as skills funcionam em Claude Code e Codex:
+
+- Cada skill tem `agents/openai.yaml` (metadata de UI do Codex + `policy` para
+  user-invoked). Gerar/atualizar junto com a `SKILL.md`.
+- `AGENTS.md` é symlink para `CLAUDE.md`.
+- Modelo de invocação: `.agents/invocation.md`.
 
 ## Pendências conhecidas
 
-- **`resolving-merge-conflicts` não está no `plugin.json`** — o upstream também a
-  omite do plugin dele (aparente descuido: a skill existe desde a v1.0.0 mas nunca
-  foi listada). Mantida a paridade. Se quiser distribuí-la, adicione a entrada aqui
-  e registre como divergência deliberada.
-
-- **`writing-great-skills` (SKILL.md)**: a adaptação pt-BR original havia perdido
-  as seções "Leading words" e "Failure modes", presentes no upstream desde a
-  v1.0.1. Restauradas no sync da v1.1.0 — vale reler contra o upstream se surgir
-  divergência de comportamento.
+- **`CLAUDE.md` e `plugin.json` só editáveis à mão.** O hook "ARS scope guard"
+  bloqueia agents de escreverem ambos neste repo (falso positivo — protege o
+  manifest/instruções do ARS, não os nossos). Edições precisam ser feitas
+  manualmente pelo mantenedor.
 - **`in-progress/loop-me`**: nunca traduzida; idêntica ao upstream. Bucket
   `in-progress`, baixa prioridade.
-- **Guard do plugin `academic-research-skills`**: o hook "ARS scope guard" bloqueia
-  agents de escrever `.claude-plugin/plugin.json` neste repo (falso positivo — ele
-  protege o manifest do ARS, não o nosso). Edições no `plugin.json` precisam ser
-  feitas manualmente pelo mantenedor.

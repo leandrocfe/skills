@@ -1,0 +1,5 @@
+interface:
+  display_name: "To Spec"
+  short_description: "Transforma uma conversa em spec"
+policy:
+  allow_implicit_invocation: false

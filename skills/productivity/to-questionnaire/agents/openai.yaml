@@ -1,0 +1,5 @@
+interface:
+  display_name: "To Questionnaire"
+  short_description: "Reúne perguntas num doc para alguém responder"
+policy:
+  allow_implicit_invocation: false

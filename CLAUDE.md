@@ -13,7 +13,15 @@ Cada entrada de skill no `README.md` top-level deve linkar o nome da skill para 
 
 Cada bucket tem um `README.md` listando todas as skills do bucket com uma descrição de uma linha, com o nome linkado para o `SKILL.md`. Os READMEs dos buckets e o README top-level agrupam as entradas em **User-invoked** e **Model-invoked**.
 
-Toda `SKILL.md` é ou user-invoked (`disable-model-invocation: true`, alcançável apenas pelo humano) ou model-invoked (alcançável por model ou usuário). Para as definições completas, convenções de description e por que uma user-invoked skill pode invocar model-invoked skills mas nunca outra user-invoked, veja a documentação de invocação no repositório original.
+Toda `SKILL.md` é ou user-invoked (`disable-model-invocation: true`, alcançável apenas pelo humano) ou model-invoked (alcançável por model ou usuário). Para as definições completas, convenções de description e por que uma user-invoked skill pode invocar model-invoked skills mas nunca outra user-invoked, veja `.agents/invocation.md`.
+
+## Dual-harness (Claude Code + Codex)
+
+Estas skills funcionam nos dois harnesses sem cópias geradas:
+
+- Toda skill carrega um `agents/openai.yaml` ao lado da `SKILL.md` com a metadata de UI do Codex (`interface.display_name`, `interface.short_description`) e, para skills user-invoked, `policy.allow_implicit_invocation: false` — o análogo Codex de `disable-model-invocation: true`. Mantenha os dois em sincronia: uma skill é user-invoked em ambos ou em nenhum.
+- `AGENTS.md` é um symlink para `CLAUDE.md`, para o Codex ler as mesmas instruções do repo.
+- O modelo de invocação dual-harness está documentado em `.agents/invocation.md`.
 
 ## Sincronização com o upstream
 

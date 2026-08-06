@@ -1,0 +1,5 @@
+interface:
+  display_name: "Wait What"
+  short_description: "Repropõe — mais simples, com o contexto que faltou"
+policy:
+  allow_implicit_invocation: false

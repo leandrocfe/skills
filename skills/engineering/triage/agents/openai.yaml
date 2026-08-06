@@ -1,0 +1,5 @@
+interface:
+  display_name: "Triage"
+  short_description: "Move issues pelas roles de triage"
+policy:
+  allow_implicit_invocation: false

@@ -17,6 +17,11 @@ Esta skill é _informada_ pelo domain model do projeto e construída sobre um vo
 
 ### 1. Explore
 
+**Escope antes de varrer — YAGNI.** Aprofundar um módulo compensa ao tornar mudanças futuras nele mais fáceis, então dê peso extra às partes da codebase que mudaram recentemente. Decida *onde* olhar antes de olhar:
+
+- Se o usuário nomeou uma direção — um módulo, um subsistema, um ponto de dor — pegue-a, e pule a inferência abaixo.
+- Senão, percorra um bom trecho do histórico de commits (`git log --oneline`) para achar os hot spots da codebase — os arquivos e áreas que aparecem repetidamente — e deixe esses paths puxarem sua atenção primeiro. Se as mudanças estiverem espalhadas sem hot spot claro, alargue a rede.
+
 Leia primeiro o glossário de domínio do projeto (`CONTEXT.md`) e quaisquer ADRs na área que você está tocando.
 
 Depois use a ferramenta Agent com `subagent_type=Explore` para caminhar pela codebase. Não siga heurísticas rígidas — explore de forma orgânica e note onde você sente fricção:
@@ -56,7 +61,7 @@ NÃO proponha interfaces ainda. Depois que o arquivo for escrito, pergunte ao us
 
 ### 3. Loop de sabatina
 
-Uma vez que o usuário escolher um candidato, rode a skill `/grilling` para caminhar a design tree com ele — constraints, dependências, o shape do módulo aprofundado, o que fica atrás do seam, quais testes sobrevivem.
+Uma vez que o usuário escolher um candidato, rode a skill `/grilling` para caminhar a decision tree com ele — constraints, dependências, o shape do módulo aprofundado, o que fica atrás do seam, quais testes sobrevivem.
 
 Efeitos colaterais acontecem inline conforme decisões cristalizam — rode a skill `/domain-modeling` para manter o domain model atualizado conforme avança:
 

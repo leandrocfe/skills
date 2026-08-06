@@ -1,0 +1,5 @@
+interface:
+  display_name: "Grill Me"
+  short_description: "Afia um plano por entrevista"
+policy:
+  allow_implicit_invocation: false

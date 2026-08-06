@@ -1,0 +1,5 @@
+interface:
+  display_name: "Dev Pipeline"
+  short_description: "Roteia o ciclo completo de desenvolvimento"
+policy:
+  allow_implicit_invocation: false

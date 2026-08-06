@@ -1,0 +1,5 @@
+interface:
+  display_name: "Claude Handoff"
+  short_description: "Passa o trabalho a um background agent"
+policy:
+  allow_implicit_invocation: false

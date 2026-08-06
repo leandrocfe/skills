@@ -1,0 +1,5 @@
+interface:
+  display_name: "Writing Beats"
+  short_description: "Monta material bruto em beats"
+policy:
+  allow_implicit_invocation: false

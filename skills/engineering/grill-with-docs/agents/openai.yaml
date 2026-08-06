@@ -1,0 +1,5 @@
+interface:
+  display_name: "Grill with Docs"
+  short_description: "Sabatina um design e escreve os docs"
+policy:
+  allow_implicit_invocation: false

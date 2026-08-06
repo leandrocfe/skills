@@ -1,10 +1,10 @@
 ---
 name: wayfinder
-description: Planeja um pedaço enorme de trabalho — maior do que uma sessão de agent consegue segurar — como um mapa compartilhado de tickets de investigação no seu issue tracker, e resolve um ticket por vez até que o caminho até o destino esteja claro.
+description: Planeja um pedaço enorme de trabalho — maior do que uma sessão de agent consegue segurar — como um mapa compartilhado de decision tickets no seu issue tracker, e resolve um ticket por vez até que o caminho até o destino esteja claro.
 disable-model-invocation: true
 ---
 
-Chegou uma ideia solta — grande demais para uma sessão de agent, e envolta em névoa: o caminho daqui até o **destino** ainda não é visível. Wayfinding é sobre achar esse caminho, não sobre partir para cima do destino. Esta skill traça o caminho como um **mapa compartilhado** no issue tracker do repo, e então trabalha os tickets dele um por vez até a rota ficar clara.
+Chegou uma ideia solta — grande demais para uma sessão de agent, e envolta em névoa: o caminho daqui até o **destino** ainda não é visível. Wayfinding é sobre achar esse caminho, não sobre partir para cima do destino. Esta skill traça o caminho como um **mapa compartilhado** no issue tracker do repo, e então trabalha seus **decision tickets** — perguntas cuja resolução é uma decisão, não fatias de um build a executar — um por vez até a rota ficar clara.
 
 O destino varia a cada empreitada, e nomeá-lo é o primeiro ato de traçar o mapa — ele molda cada ticket. Pode ser uma spec para entregar e iterar, uma decisão a travar antes de o planejamento começar, ou uma mudança feita no lugar, como uma migração de estrutura de dados. O mapa é agnóstico de domínio — trabalho de engenharia, conteúdo de curso, o que couber no formato.
 
@@ -74,9 +74,9 @@ A resposta não faz parte do corpo — ela é registrada na resolução (veja [T
 
 Todo ticket é ou **HITL** — human in the loop, trabalhado *com* um humano que fala por si — ou **AFK**, conduzido pelo agent sozinho. Um ticket HITL só se resolve através dessa troca ao vivo; o agent nunca faz as vezes do lado humano dela (um agent de grilling que responde às próprias perguntas quebrou isso).
 
-- **Research** (AFK): Ler documentação, APIs de terceiros ou recursos locais como bases de conhecimento. Cria um resumo em markdown como asset linkado. Use quando é preciso conhecimento fora do diretório de trabalho atual.
+- **Research** (AFK): Ler documentação, APIs de terceiros ou recursos locais como bases de conhecimento para trazer à tona um fato do qual uma decisão depende. Resolvido por um **subagent** `/research`. Use quando é preciso conhecimento fora do diretório de trabalho atual.
 - **Prototype** (HITL): Eleva a fidelidade da discussão fazendo um artefato concreto, barato e tosco para reagir — um outline, um esboço, um stub, ou código de UI/lógica via a skill /prototype. Linka o prototype como asset. Use quando "como isso deve parecer" ou "como isso deve se comportar" é a pergunta central.
-- **Grilling** (HITL): Conversa via as skills /grilling e /domain-modeling, uma pergunta por vez. O caso padrão.
+- **Grilling** (HITL): Conversa. O caso padrão. Sempre invoque as skills /grilling e /domain-modeling.
 - **Task** (HITL ou AFK): Trabalho manual que precisa acontecer antes que uma *decisão* possa ser tomada — não há nada a decidir, prototipar ou pesquisar, mas a discussão está travada até que esteja feito. Assinar um serviço para poder julgar sua API, provisionar acesso, mover dados para poder ver seu formato. Este é o único tipo que *faz* em vez de decidir — e ele conquista seu lugar por desbloquear uma decisão, não por entregar o destino. O agent o conduz sozinho quando dá (AFK); caso contrário, entrega ao humano um checklist preciso (HITL). Resolvido quando o trabalho está feito; a resposta registra o que foi feito e quaisquer fatos resultantes (onde ficam as credenciais, novas URLs, contagem de linhas) dos quais tickets posteriores dependem.
 
 ## Fog of war
@@ -102,7 +102,7 @@ Declarar algo fora de escopo é um ato de escopo, não um passo na rota. Quando 
 
 ## Invocação
 
-Dois modos. Em qualquer um deles, **nunca resolva mais de um ticket por sessão.**
+Dois modos. Em qualquer um deles, **nunca resolva mais de um ticket por sessão** — com a exceção dos research tickets.
 
 ### Traçar o mapa
 
@@ -112,7 +112,8 @@ O usuário invoca com uma ideia solta.
 2. **Mapeie a frontier.** Sabatine de novo, agora em **largura**: espalhe-se por todo o espaço em vez de aprofundar numa única linha, trazendo à tona as decisões abertas e os primeiros passos já pegáveis. **Se isso não revelar névoa alguma** — o caminho até o destino já está claro, a jornada inteira é pequena o bastante para uma sessão — você não precisa de mapa. Pare e pergunte ao usuário como ele quer prosseguir.
 3. **Crie o mapa** (label `wayfinder:map`): Destination e Notes preenchidos, Decisions-so-far vazio, a névoa esboçada em **Not yet specified**.
 4. **Crie os tickets que você consegue especificar agora** como issues-filhas do mapa — e então conecte as blocking edges numa **segunda passada** (issues precisam de ids antes de poderem referenciar umas às outras). Conectar as edges as separa entre a frontier e as bloqueadas; tudo que você ainda não consegue especificar fica na névoa — a seção **Not yet specified**.
-5. Pare — traçar o mapa é o trabalho de uma sessão; não resolva tickets também.
+5. **Dispare os research subagents.** Para cada ticket `research` que você acabou de criar, suba um subagent `/research` para resolvê-lo em paralelo, capturando os achados num branch throwaway `research/<name>` com um context pointer a partir do ticket.
+6. Pare — traçar o mapa é o trabalho de uma sessão; ele não resolve nada na mão.
 
 ### Trabalhar o mapa
 

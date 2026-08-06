@@ -1,0 +1,5 @@
+interface:
+  display_name: "Bro"
+  short_description: "Reescreve a última mensagem em pt simples"
+policy:
+  allow_implicit_invocation: false

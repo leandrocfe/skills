@@ -1,0 +1,5 @@
+interface:
+  display_name: "Writing Shape"
+  short_description: "Molda material bruto num artigo"
+policy:
+  allow_implicit_invocation: false

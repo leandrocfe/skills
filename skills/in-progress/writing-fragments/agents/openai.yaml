@@ -1,0 +1,5 @@
+interface:
+  display_name: "Writing Fragments"
+  short_description: "Minera fragmentos brutos de escrita"
+policy:
+  allow_implicit_invocation: false
