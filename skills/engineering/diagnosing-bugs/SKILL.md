@@ -9,6 +9,12 @@ Uma disciplina para bugs difíceis. Pule fases só quando explicitamente justifi
 
 Ao explorar a codebase, leia `CONTEXT.md` (se existir) para ter um modelo mental claro dos módulos relevantes, e verifique ADRs na área que você está tocando.
 
+## Redija
+
+Esta skill faz você mostrar comandos, outputs e artefatos capturados. **Redija todo secret primeiro** — escreva `<REDACTED>` no lugar. Construa loops contra env vars, para a credencial ficar no ambiente em vez de no que você mostra. Artefatos capturados carregam auth headers: cite apenas as linhas que carregam o sinal.
+
+Se o output redigido não bastar para diagnosticar o bug, diga isso e pergunte ao usuário.
+
 ## Fase 1 — Construa um feedback loop
 
 **Esta é a skill.** Todo o resto é mecânico. Se você tiver um sinal **apertado** de pass/fail para o bug — um que fica vermelho neste bug específico — você vai encontrar a causa; bisection, teste de hipóteses e instrumentação só consomem ele. Se não tiver, nenhuma quantidade de olhar código vai salvar você.
@@ -46,11 +52,11 @@ O objetivo não é um repro limpo, mas uma **taxa de reprodução mais alta**. R
 
 ### Quando você genuinamente não consegue construir um loop
 
-Pare e diga explicitamente. Liste o que tentou. Peça ao usuário: (a) acesso ao ambiente que reproduz, (b) um artefato capturado (HAR file, log dump, core dump, screen recording com timestamps), ou (c) permissão para adicionar instrumentação temporária em produção. **Não** prossiga para hipotetizar sem um loop.
+Pare e diga explicitamente. Liste o que tentou. Peça ao usuário: (a) acesso ao ambiente que reproduz, (b) um artefato capturado redigido (HAR file, log dump, core dump, screen recording com timestamps), ou (c) permissão para adicionar instrumentação temporária em produção. **Não** prossiga para hipotetizar sem um loop.
 
 ### Critério de conclusão — um loop apertado que fica vermelho
 
-Fase 1 está pronta quando o loop está **apertado** e **red-capable**: você consegue nomear **um comando** — um caminho de script, uma invocação de teste, um curl — que você **já rodou pelo menos uma vez** (cole a invocação e seu output), e que é:
+Fase 1 está pronta quando o loop está **apertado** e **red-capable**: você consegue nomear **um comando** — um caminho de script, uma invocação de teste, um curl — que você **já rodou pelo menos uma vez** (mostre a invocação e seu output, redigidos), e que é:
 
 - [ ] **Red-capable** — dirige o caminho real do código do bug e afirma o **sintoma exato do usuário**, de forma que possa ficar vermelho neste bug e verde quando corrigido. Não "roda sem erro" — precisa conseguir _pegar este bug específico_.
 - [ ] **Determinístico** — mesmo veredito toda execução (bugs flaky: uma taxa alta de reprodução pinada, conforme acima).

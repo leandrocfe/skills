@@ -1,12 +1,12 @@
 # Estado de sincronização com o upstream
 
-upstream-version: v1.2.0
+upstream-version: v1.2.3
 
 > A linha `upstream-version:` acima é lida por automação (GitHub Action).
 > Atualize-a **somente** ao concluir um sync completo, e mantenha o formato exato.
 
 - **Upstream**: https://github.com/mattpocock/skills (remote `upstream`)
-- **Baseline atual**: `v1.2.0` — último sync completo em 2026-08-05
+- **Baseline atual**: `v1.2.3` — último sync completo em 2026-08-10
 - **Como sincronizar**: skill de projeto `/sync-upstream` (`.claude/skills/sync-upstream/`), processo tag-a-tag
 
 ## Mapeamento de nomes (upstream → este repo)
@@ -48,14 +48,12 @@ Decisões permanentes deste projeto — não reabrir a cada sync:
 - **`implement` listada nos READMEs.** O upstream a omitia dos READMEs até a
   v1.2.0 (quando passou a listá-la); aqui já era listada, porque o `CLAUDE.md`
   exige que toda skill de `engineering/` tenha entrada no README top-level.
-- **`writing-for-agents` agrupada em Model-invoked.** O upstream v1.2.0 é
-  internamente inconsistente: o changelog e o frontmatter da `SKILL.md` dizem
-  **model-invoked**, mas o `agents/openai.yaml` traz `allow_implicit_invocation:
-  false` e os READMEs a listam em User-invoked. Resolvemos para **model-invoked**
-  de forma consistente (SKILL.md sem `disable-model-invocation`, sem bloco
-  `policy` no openai.yaml, listada em Model-invoked) — condiz com a convenção
-  deste repo de agrupar por frontmatter. `display_name` corrigido de "Writing
-  Great Skills" (stale no upstream) para "Writing For Agents".
+- **`writing-for-agents` model-invoked (paridade a partir da v1.2.2).** Na v1.2.0
+  o upstream era inconsistente (frontmatter model-invoked, mas `openai.yaml` com
+  `allow_implicit_invocation: false` e READMEs em User-invoked); antecipamos a
+  correção para model-invoked. O upstream **alcançou isso na v1.2.2** (#766):
+  dropou o bloco `policy`, corrigiu o `display_name`/`short_description` stale e
+  moveu para Model-invoked nos READMEs. Não é mais divergência — está alinhado.
 - **`.agents/` parcial.** Do upstream v1.2.0 importamos apenas
   `.agents/invocation.md` (adaptado). Os ADRs meta do Matt (`0001`, `0002`),
   `install-block.md` e `writing-docs.md` são específicos do repo dele e ficam de

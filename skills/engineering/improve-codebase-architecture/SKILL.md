@@ -24,7 +24,7 @@ Esta skill é _informada_ pelo domain model do projeto e construída sobre um vo
 
 Leia primeiro o glossário de domínio do projeto (`CONTEXT.md`) e quaisquer ADRs na área que você está tocando.
 
-Depois use a ferramenta Agent com `subagent_type=Explore` para caminhar pela codebase. Não siga heurísticas rígidas — explore de forma orgânica e note onde você sente fricção:
+Depois dispare um sub-agent para caminhar pela codebase. Não siga heurísticas rígidas — explore de forma orgânica e note onde você sente fricção:
 
 - Onde entender um conceito exige pular entre muitos módulos pequenos?
 - Onde módulos estão **shallow** — interface quase tão complexa quanto a implementação?

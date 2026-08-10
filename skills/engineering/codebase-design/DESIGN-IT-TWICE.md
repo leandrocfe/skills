@@ -18,7 +18,7 @@ Mostre isso ao usuário, depois prossiga imediatamente para o passo 2. O usuári
 
 ### 2. Dispare sub-agents
 
-Dispare 3+ sub-agents em paralelo usando a ferramenta Agent. Cada um deve produzir uma **interface radicalmente diferente** para o módulo aprofundado.
+Dispare 3+ sub-agents em paralelo. Cada um deve produzir uma **interface radicalmente diferente** para o módulo aprofundado.
 
 Forneça a cada sub-agent um brief técnico separado (caminhos de arquivos, detalhes de acoplamento, categoria de dependência de [DEEPENING.md](DEEPENING.md), o que fica atrás do seam). O brief é independente da explicação do espaço do problema voltada para o usuário no passo 1. Dê a cada agente uma constraint de design diferente:
 

@@ -92,6 +92,7 @@ Apresente ao mantenedor:
 - **Nunca copie automaticamente** conteúdo do upstream.
 - Preserve a identidade deste projeto (nomes mapeados em `UPSTREAM.md`).
 - Escreva em português do Brasil; mantenha termos técnicos consagrados em inglês.
+- **Registro profissional e refinado.** Nada de gíria, coloquialismo ou informalidade forçada (ex.: "UX gostosa", "sacada", "dá pra", "maneiro"). Traduza para um português estruturado, claro e adequado a documentação técnica — prefira o termo preciso ao efeito. Adjetivos de marketing do original ("delightful", "beautiful") viram equivalentes sóbrios ("refinada", "bem-acabada"), não gíria. Na dúvida, leia em voz alta: se soaria estranho num manual técnico, reescreva.
 - Priorize comportamento e intenção da skill, não a mesma redação.
 - Exemplos muito específicos da realidade do Matt → proponha equivalentes do contexto brasileiro quando fizer sentido.
 - Preserve personalizações existentes deste repo, exceto quando conflitarem com melhorias importantes do upstream — nesse caso, aponte o conflito no relatório do passo 3.

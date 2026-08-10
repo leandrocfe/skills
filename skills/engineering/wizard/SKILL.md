@@ -5,9 +5,9 @@ description: Gera um wizard bash interativo que conduz um humano por passos que 
 
 # Wizard
 
-Um **wizard** é um script bash que conduz um humano, passo a passo, por um procedimento manual que é tedioso de fazer na mão e tedioso de reexplicar para uma IA toda vez. Ele abre cada URL, diz exatamente o que clicar e copiar, captura os valores, escreve-os onde devem ficar (`.env`, secrets do GitHub), confirma a cada etapa e mostra quanto falta. Pode configurar serviços de terceiros, rodar uma migração pontual, ou mover o projeto de um estado para outro.
+Um **wizard** é um script bash que conduz um humano, passo a passo, por um procedimento manual que é tedioso de fazer na mão e tedioso de reexplicar para uma IA toda vez. Ele abre cada URL, diz exatamente o que clicar e copiar, captura os valores, escreve-os onde devem ficar (`.env`, secrets do GitHub), confirma a cada etapa e mostra quantos estágios faltam. Pode configurar serviços de terceiros, rodar uma migração pontual, ou mover o projeto de um estado para outro.
 
-A UX gostosa já está resolvida pelo [template.sh](template.sh) — progresso com tempo restante, portões de confirmação, abertura de URL cross-platform (incluindo WSL), entrada oculta de secrets, upserts idempotentes no `.env`, escrita via `gh secret`/`gh variable` e um resumo final. **Seu trabalho é apenas escopar o procedimento e escrever os estágios dele.** A biblioteca acima do marcador `STAGES` é idêntica em todo wizard; essa consistência é o ponto — nunca a edite à mão.
+A UX refinada já está resolvida pelo [template.sh](template.sh) — progresso estágio a estágio, portões de confirmação, abertura de URL cross-platform (incluindo WSL), entrada oculta de secrets, upserts idempotentes no `.env`, escrita via `gh secret`/`gh variable` e um resumo final. **Seu trabalho é apenas escopar o procedimento e escrever os estágios dele.** A biblioteca acima do marcador `STAGES` é idêntica em todo wizard; essa consistência é o ponto — nunca a edite à mão.
 
 Um wizard é efêmero por padrão — feito para uma execução, salvo num caminho de scratch ou em `scripts/`, apagado quando o trabalho termina. Faça commit dele apenas quando o usuário quiser um caminho de setup repetível que deva viver no repo.
 
@@ -32,7 +32,7 @@ Para cada estágio, escreva o caminho preciso que um humano percorre: qual URL a
 
 ### 3. Escreva o wizard
 
-Copie o `template.sh` para o caminho alvo. Substitua o estágio de exemplo por um `stage` por passo, em ordem de dependência. Use os helpers da biblioteca — `stage`, `say`/`step`, `open_url`, `ask`/`ask_secret`, `write_env`, `set_secret`/`set_var`, `pause`/`confirm` — e defina `TOTAL_STAGES` e `TOTAL_MINUTES` com estimativas honestas (é isso que alimenta a exibição de tempo restante).
+Copie o `template.sh` para o caminho alvo. Substitua o estágio de exemplo por um `stage` por passo, em ordem de dependência. Use os helpers da biblioteca — `stage`, `say`/`step`, `open_url`, `ask`/`ask_secret`, `write_env`, `set_secret`/`set_var`, `pause`/`confirm` — e defina `TOTAL_STAGES` com o número de estágios que você escreveu.
 
 Mantenha o nível que o template estabelece: abra a URL antes de pedir o valor dela, use `ask_secret` para tudo que for secreto, use `write_env` em todo valor persistido, use `set_secret` só nos valores que o CI realmente precisa, e use `confirm` antes de qualquer ação irreversível. Cada `stage` limpa a tela para que só o passo atual esteja visível — mantenha um estágio numa única tarefa focada, para que nada de que o humano precisa role para fora da tela. Não toque na biblioteca acima do marcador.
 

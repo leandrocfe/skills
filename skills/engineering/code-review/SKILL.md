@@ -57,8 +57,6 @@ Cada smell se lê como *o que é* → *como corrigir*; confronte-os com o diff:
 
 ### 4. Suba os dois sub-agents em paralelo
 
-Envie uma única mensagem com duas chamadas da tool `Agent`. Use o subagent `general-purpose` para ambos.
-
 **Prompt do sub-agent de Standards** — inclua:
 
 - O comando de diff completo e a lista de commits.

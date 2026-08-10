@@ -1,6 +1,6 @@
 {
   "name": "leandrocfe-skills",
-  "version": "1.2.0",
+  "version": "1.2.3",
   "skills": [
     "./skills/engineering/ask-matt",
     "./skills/engineering/diagnosing-bugs",
