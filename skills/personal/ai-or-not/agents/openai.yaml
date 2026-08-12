@@ -1,0 +1,3 @@
+interface:
+  display_name: "AI or Not"
+  short_description: "Julga se um texto, imagem, vídeo ou áudio foi feito por IA"
